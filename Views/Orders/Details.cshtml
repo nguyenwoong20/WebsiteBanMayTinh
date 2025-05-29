@@ -1,0 +1,55 @@
+﻿@model Website_BanMayTinh.Models.Order
+
+@{
+    ViewData["Title"] = "Chi tiết đơn hàng";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <h2 class="mb-4"><i class="bi bi-receipt"></i> Chi tiết đơn hàng #@Model.Id</h2>
+
+
+    <div class="card">
+        <div class="card-body">
+            <p><strong>Ngày đặt hàng:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+            <p>
+                <strong>Trạng thái:</strong>
+                @if (Model.IsPay)
+                {
+                    <span class="badge bg-success">Đã thanh toán</span>
+                }
+                else
+                {
+                    <span class="badge bg-warning text-dark">Chưa thanh toán</span>
+                }
+            </p>
+            <p><strong>Ghi chú:</strong> @Model.Notes</p>
+        </div>
+    </div>
+
+    <table class="table table-hover mt-3">
+        <thead class="table-dark">
+            <tr>
+                <th>Sản phẩm</th>
+                <th>Giá</th>
+                <th>Số lượng</th>
+                <th>Thành tiền</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model.OrderDetails)
+            {
+                <tr>
+                    <td>@item.Product.Name</td>
+                    <td>@item.Product.Price.ToString("N0") VNĐ</td>
+                    <td>@item.Quantity</td>
+                    <td>@(item.Product.Price * item.Quantity) VNĐ</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+    <h4 class="text-end mt-3">🧾 Tổng tiền: <strong>@Model.TotalAmount.ToString("N0") VNĐ</strong></h4>
+
+    <a asp-action="MyOrders" class="btn btn-secondary mt-3"><i class="bi bi-arrow-left"></i> Quay lại</a>
+</div>

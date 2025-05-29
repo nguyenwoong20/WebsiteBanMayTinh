@@ -1,0 +1,200 @@
+﻿@model IEnumerable<Website_BanMayTinh.Models.Product>
+
+@{
+    ViewData["Title"] = "Danh sách sản phẩm";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+<link href="~/css/admin.css" rel="stylesheet"/>
+
+<div class="container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-3">
+        <h3 class="text-success fw-bold"><i class="bi bi-box-seam"></i> Danh sách sản phẩm</h3>
+        <div class="d-flex align-items-center">
+            <!-- Dropdown lọc theo danh mục -->
+            <select id="categoryFilter" class="form-select me-2" style="width: 200px;">
+                <option value="">Tất cả danh mục</option>
+                @foreach (var category in ViewBag.Categories ?? Enumerable.Empty<Website_BanMayTinh.Models.Category>())
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+
+            <!-- Dropdown sắp xếp -->
+            <select id="sortFilter" class="form-select me-2" style="width: 200px;">
+                <option value="">Sắp xếp theo</option>
+                <option value="name-asc">Tên (A-Z)</option>
+                <option value="name-desc">Tên (Z-A)</option>
+                <option value="price-asc">Giá (Thấp-Cao)</option>
+                <option value="price-desc">Giá (Cao-Thấp)</option>
+            </select>
+
+            <a asp-action="Create" class="btn btn-success">
+                <i class="bi bi-plus-circle"></i> Thêm sản phẩm
+            </a>
+        </div>
+    </div>
+    <form asp-action="Search" method="get" class="d-flex mb-3">
+        <input type="text" name="searchString" class="form-control me-2" placeholder="Tìm theo ID, tên hoặc mô tả của sản phẩm..." value="@Context.Request.Query["searchString"]">
+        <button type="submit" class="btn btn-primary">Search</button>
+    </form>
+
+    <div class="table-responsive">
+        <table class="table table-bordered table-hover align-middle">
+            <thead class="table-success text-center">
+                <tr>
+                    <th>#</th>
+                    <th>Tên sản phẩm</th>
+                    <th>Thương hiệu</th>
+                    <th>Giá (VNĐ)</th>
+                    <th>Mô tả</th>
+                    <th>Hình ảnh</th>
+                    <th>Danh mục</th>
+                    <th>Thao tác</th>
+                </tr>
+            </thead>
+            <tbody id="productTableBody">
+                @foreach (var item in Model)
+                {
+                    <tr data-category="@item.Category?.Id" data-name="@item.Name" data-price="@item.Price">
+						<td>@item.Id</td>
+                        <td>@item.Name</td>
+                        <td>@(item.Brand?.Name ?? "Không có thương hiệu")</td>
+                        <td>@string.Format("{0:N0}", item.Price) VNĐ</td>
+                        <td>@item.Description</td>
+                        <td class="text-center">
+                            <img src="@item.ImageUrl" alt="Hình sản phẩm" class="img-thumbnail" style="max-height:100px;" />
+                        </td>
+                        <td>@item.Category?.Name</td>
+                        <td>
+                            <div class="action-buttons">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                    <i class="bi bi-pencil-square"></i> Sửa
+                                </a>
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">
+                                    <i class="bi bi-eye-fill"></i> Xem
+                                </a>
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                    <i class="bi bi-trash-fill"></i> Xóa
+                                </a>
+                            </div>
+                        </td>
+                    </tr>
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- PHÂN TRANG -->
+<nav aria-label="Page navigation">
+    <ul class="pagination justify-content-center mt-4">
+        @if (ViewBag.CurrentPage > 1)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="Index"
+                   asp-route-page="@(ViewBag.CurrentPage - 1)"
+                   asp-route-categoryId="@ViewBag.SelectedCategory">Trang trước</a>
+            </li>
+        }
+
+        @for (int i = 1; i <= ViewBag.TotalPages; i++)
+        {
+            if (i == ViewBag.CurrentPage)
+            {
+                <li class="page-item active"><span class="page-link">@i</span></li>
+            }
+            else
+            {
+                <li class="page-item">
+                    <a class="page-link"
+                       asp-action="Index"
+                       asp-route-page="@i"
+                       asp-route-categoryId="@ViewBag.SelectedCategory">@i</a>
+                </li>
+            }
+        }
+
+        @if (ViewBag.CurrentPage < ViewBag.TotalPages)
+        {
+            <li class="page-item">
+                <a class="page-link"
+                   asp-action="Index"
+                   asp-route-page="@(ViewBag.CurrentPage + 1)"
+                   asp-route-categoryId="@ViewBag.SelectedCategory">Trang sau</a>
+            </li>
+        }
+    </ul>
+</nav>
+
+@section Scripts {
+    <script>
+
+        document.addEventListener("DOMContentLoaded", function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var categoryId = urlParams.get("categoryId");
+
+            if (categoryId) {
+                document.getElementById("categoryFilter").value = categoryId;
+            }
+
+            // Khi người dùng thay đổi danh mục, reload trang với URL mới
+            document.getElementById("categoryFilter").addEventListener("change", function () {
+                var selectedCategory = this.value;
+                    var baseUrl = window.location.origin + "/Admin/Product/Index";
+                    var newUrl = selectedCategory ? `${baseUrl}?categoryId=${selectedCategory}` : baseUrl;
+                    window.location.href = newUrl;
+            });
+        });
+
+        document.getElementById('categoryFilter').addEventListener('change', function() {
+            applyFilters();
+        });
+
+        // Sắp xếp
+        document.getElementById('sortFilter').addEventListener('change', function() {
+            applyFilters();
+        });
+
+        function applyFilters() {
+            var selectedCategory = document.getElementById('categoryFilter').value;
+            var sortOption = document.getElementById('sortFilter').value;
+            var tbody = document.getElementById('productTableBody');
+            var rows = Array.from(tbody.getElementsByTagName('tr'));
+
+            // Lọc theo danh mục trước
+            rows.forEach(function(row) {
+                var rowCategory = row.getAttribute('data-category');
+                if (selectedCategory === '' || rowCategory === selectedCategory) {
+                    row.style.display = '';
+                } else {
+                    row.style.display = 'none';
+                }
+            });
+
+
+            // Lấy các row đang hiển thị để sắp xếp
+            var visibleRows = rows.filter(row => row.style.display !== 'none');
+
+            // Sắp xếp
+            if (sortOption) {
+                visibleRows.sort(function(a, b) {
+                    if (sortOption === 'name-asc') {
+                        return a.getAttribute('data-name').localeCompare(b.getAttribute('data-name'));
+                    } else if (sortOption === 'name-desc') {
+                        return b.getAttribute('data-name').localeCompare(a.getAttribute('data-name'));
+                    } else if (sortOption === 'price-asc') {
+                        return parseFloat(a.getAttribute('data-price')) - parseFloat(b.getAttribute('data-price'));
+                    } else if (sortOption === 'price-desc') {
+                        return parseFloat(b.getAttribute('data-price')) - parseFloat(a.getAttribute('data-price'));
+                    }
+                });
+
+                // Thêm lại các row đã sắp xếp vào tbody
+                visibleRows.forEach(row => tbody.appendChild(row));
+            }
+        }
+    </script>
+
+
+}

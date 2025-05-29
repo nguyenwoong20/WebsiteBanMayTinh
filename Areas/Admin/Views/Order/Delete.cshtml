@@ -1,0 +1,53 @@
+﻿@model Website_BanMayTinh.Models.Order
+
+@{
+    ViewData["Title"] = "Xóa đơn hàng";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm border-danger">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0"><i class="bi bi-trash"></i> Xóa đơn hàng</h4>
+        </div>
+        <div class="card-body">
+            <h5 class="text-center text-danger">Bạn có chắc chắn muốn xóa đơn hàng này?</h5>
+            <hr />
+
+            <div class="row">
+                <div class="col-md-6">
+                    <p><strong>Ngày đặt hàng:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+                    <p><strong>Tổng tiền:</strong> @Model.TotalAmount.ToString("N0") VNĐ</p>
+                    <p><strong>Ghi chú:</strong> @(string.IsNullOrEmpty(Model.Notes) ? "Không có" : Model.Notes)</p>
+                </div>
+                <div class="col-md-6">
+                    <p><strong>Khách hàng:</strong> @Model.User?.FullName ?? "N/A"</p>
+                    <p><strong>Email:</strong> <a href="mailto:@Model.User?.Email">@Model.User?.Email</a></p>
+                    <p>
+                        <strong>Trạng thái thanh toán:</strong>
+                        @if (Model.IsPay)
+                        {
+                            <span class="badge bg-success">Đã thanh toán</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Chưa thanh toán</span>
+                        }
+                    </p>
+                </div>
+            </div>
+
+            <form asp-action="Delete" method="post">
+                <input type="hidden" asp-for="Id" />
+                <div class="d-flex justify-content-center mt-3">
+                    <button type="submit" class="btn btn-danger me-2">
+                        <i class="bi bi-trash"></i> Xóa
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

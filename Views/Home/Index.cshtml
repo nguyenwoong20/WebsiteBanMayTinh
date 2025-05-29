@@ -1,0 +1,176 @@
+﻿@model IEnumerable<Website_BanMayTinh.Models.Product>
+
+@{
+    ViewData["Title"] = "Trang chủ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<style>
+    .home-index .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 20px;
+    }
+
+    .home-index .text-success {
+        color: #d4a800 !important;
+        font-size: 28px;
+        text-transform: uppercase;
+        letter-spacing: 1px;
+    }
+
+    .home-index .form-select:focus {
+        border-color: #d4a800;
+        box-shadow: 0 0 5px rgba(212, 168, 0, 0.5);
+        outline: none;
+    }
+
+    .home-index .product-card .card {
+        background: linear-gradient(to bottom right, #fffbea, #fff3c4);
+        border: 1px solid #ffe58f;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        color: #000;
+    }
+
+    .home-index .card .card-body {
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between; /* Đẩy các nút xuống cuối */
+        height: 100%; /* Đảm bảo card-body chiếm toàn bộ chiều cao còn lại của card */
+    }
+
+    .home-index .card .card-body > *:not(:last-child) {
+        margin-bottom: 5px; /* Tạo khoảng cách giữa các phần tử bên trên nút */
+    }
+
+    .home-index .product-card .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    home-index .card-img-top {
+        height: 200px; /* hoặc 280px tùy hình */
+        width: 200px;
+        object-fit: cover; /* giữ nguyên tỉ lệ ảnh */
+        background-color: #f8f9fa; /* nền sáng để ảnh nổi bật nếu không đủ khung */
+        border-top-left-radius: 10px;
+        border-top-right-radius: 10px;
+        padding: 10px; /* tạo khoảng trắng nếu ảnh nhỏ hơn khung */
+    }
+
+    .home-index .card-title {
+        font-size: 18px;
+        font-weight: 600;
+        color: #d4a800;
+    }
+
+    .home-index .card-text {
+        font-size: 14px;
+        color: #5c3c00;
+    }
+
+    .home-index .price {
+        font-size: 18px;
+        font-weight: bold;
+        color: #d35400;
+    }
+
+    .home-index .card-text.text-success {
+        color: #a97400 !important;
+    }
+
+    .home-index .btn-success.btn-sm {
+        background-color: #ffcc00;
+        color: #000;
+        font-weight: 600;
+        border: none;
+    }
+
+        .home-index .btn-success.btn-sm:hover {
+            background-color: #e6b800;
+            color: #000;
+        }
+</style>
+
+<div class="home-index container mt-4">
+    <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="text-success fw-bold"><i class="bi bi-box-seam"></i> Danh sách sản phẩm</h3>
+
+        <div class="d-flex align-items-center gap-2">
+            <select id="categoryFilter" class="form-select" style="width: 200px;">
+                <option value="">Tất cả danh mục</option>
+                @foreach (var category in ViewBag.Categories ?? Enumerable.Empty<Website_BanMayTinh.Models.Category>())
+                {
+                    <option value="@category.Id">@category.Name</option>
+                }
+            </select>
+
+            <select id="sortFilter" class="form-select" style="width: 200px;">
+                <option value="">Sắp xếp theo</option>
+                <option value="name-asc">Tên (A-Z)</option>
+                <option value="name-desc">Tên (Z-A)</option>
+                <option value="price-asc">Giá (Thấp-Cao)</option>
+                <option value="price-desc">Giá (Cao-Thấp)</option>
+            </select>
+        </div>
+    </div>
+
+    <div class="row" id="productContainer">
+        @foreach (var item in Model)
+        {
+            <div class="col-md-4 col-sm-6 mb-4 product-card"
+                 data-category="@item.Category?.Id"
+                 data-name="@item.Name"
+                 data-price="@item.Price">
+                <div class="card h-100">
+                    <img src="@item.ImageUrl" class="card-img-top" alt="@item.Name" style="height: 300px; object-fit: contain" >
+                    <div class="card-body d-flex flex-column justify-content-between h-100">
+                        <a class="card-title" href="/Home/Details/@item.Id">@item.Name</a>
+                        <p class="card-text text-muted">@item.Brand?.Name</p>
+                        <p class="card-text price">@string.Format("{0:N0}", item.Price) VNĐ</p>
+                        <p class="card-text text-success">@item.Category?.Name</p>
+                        <div class="d-flex gap-2">
+                            <a href="/Home/Details/@item.Id" class="btn btn-success btn-sm me-2">Xem chi tiết</a>
+                            <a asp-controller="Cart" asp-action="AddToCart" asp-route-id="@item.Id" class="btn btn-success btn-sm">
+                                <i class="bi-cart-fill me-1"></i> Thêm vào giỏ hàng
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var urlParams = new URLSearchParams(window.location.search);
+            var sort = urlParams.get("sort");
+            if (sort) {
+                document.getElementById("sortFilter").value = sort;
+            }
+            var categoryId = urlParams.get("categoryId");
+            if (categoryId) {
+                document.getElementById("categoryFilter").value = categoryId;
+            }
+            document.getElementById("categoryFilter").addEventListener("change", applyFilters);
+            document.getElementById("sortFilter").addEventListener("change", applyFilters);
+        });
+
+        function applyFilters() {
+            var selectedCategory = document.getElementById("categoryFilter").value;
+            var sortOption = document.getElementById("sortFilter").value;
+
+            // Tạo query string mới
+            var queryParams = new URLSearchParams();
+            if (selectedCategory) queryParams.set("categoryId", selectedCategory);
+            if (sortOption) queryParams.set("sort", sortOption);
+
+            // Redirect tới URL mới với query string
+            window.location.href = "/Home/Index?" + queryParams.toString();
+        }
+    </script>
+}

@@ -1,0 +1,45 @@
+﻿@model Website_BanMayTinh.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-success text-white">
+            <h4 class="mb-0"><i class="bi bi-info-circle"></i> Chi tiết sản phẩm</h4>
+        </div>
+        <div class="card-body">
+            <dl class="row">
+                <dt class="col-sm-3 fw-bold text-muted">Tên sản phẩm:</dt>
+                <dd class="col-sm-9">@Model.Name</dd>
+
+                <dt class="col-sm-3 fw-bold text-muted">Giá (VNĐ):</dt>
+                <dd class="col-sm-9 text-danger">@string.Format("{0:N0}", Model.Price)</dd>
+
+                <dt class="col-sm-3 fw-bold text-muted">Mô tả:</dt>
+                <dd class="col-sm-9">@Model.Description</dd>
+
+                <dt class="col-sm-3 fw-bold text-muted">Hình ảnh:</dt>
+                <dd class="col-sm-9">
+                    <img src="@Model.ImageUrl" alt="Hình sản phẩm" class="img-thumbnail rounded shadow-sm" style="max-height:200px;" />
+                </dd>
+
+                <dt class="col-sm-3 fw-bold text-muted">Danh mục:</dt>
+                <dd class="col-sm-9">@Model.Category?.Name</dd>
+
+                <dt class="col-sm-3 fw-bold text-muted">Thương hiệu:</dt>
+                <dd class="col-sm-9">@Model.Brand?.Name</dd>
+            </dl>
+        </div>
+        <div class="card-footer text-end">
+            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">
+                <i class="bi bi-pencil-square"></i> Sửa
+            </a>
+            <a asp-action="Index" class="btn btn-secondary">
+                <i class="bi bi-arrow-left"></i> Quay lại
+            </a>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,284 @@
+﻿@inherits Microsoft.AspNetCore.Mvc.Razor.RazorPage<dynamic>
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewData["Title"] - LVComputer</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.5.0/font/bootstrap-icons.css" rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/site.css">
+    <style>
+        html, body {
+            height: 100%;    
+            display: flex;
+            flex-direction: column;
+        }
+
+        .container {
+            flex: 1;
+        }
+
+
+        header {
+            background: linear-gradient(90deg, #ffcc00, #e6b800);
+            color: #000;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        nav a.nav-link {
+            color: #ffcc00;
+            font-weight: bold;
+        }
+
+            nav a.nav-link:hover {
+                transform: scale(1.1);
+            }
+
+        .dropdown-menu {
+            background-color: #333;
+        }
+
+        .dropdown-menu a {
+            color: #ffcc00;
+        }
+
+        .dropdown-menu a:hover {
+            background-color: #ffcc00;
+        }
+
+        .card {
+            background-color: #222;
+            color: #ccc;
+        }
+
+        .card-title {
+            color: #ffcc00;
+        }
+
+        .btn-custom {
+            background-color: #ffcc00;
+            color: #000;
+            font-weight: bold;
+        }
+
+        .btn-custom:hover {
+            background-color: #e6b800;
+        }
+
+        footer {
+            background-color: #222;
+            color: #ffcc00;
+        }
+
+        footer a:hover {
+            color: #ffcc00 !important;
+            text-decoration: underline !important;
+            transition: color 0.3s ease, text-decoration 0.3s ease;
+        }
+
+        .suggestion-box {
+            position: absolute;
+            background: white;
+            border: 1px solid #ddd;
+            max-height: 250px;
+            overflow-y: auto;
+            z-index: 1000;
+            display: none;
+            border-radius: 5px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+        }
+
+        .suggestion-item {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+            .suggestion-item:hover {
+                background: #f5f5f5;
+            }
+
+        .suggestion-img {
+            width: 50px;
+            height: 50px;
+            object-fit: cover;
+            margin-right: 10px;
+            border-radius: 5px;
+        }
+
+        .suggestion-name {
+            opacity: 1 !important;
+            visibility: visible !important;
+            font-size: 14px;
+            font-weight: bold;
+            color: #000;
+            margin: 0;
+        }
+
+        .suggestion-price {
+            font-size: 12px;
+            color: red;
+            margin: 0;
+        }
+
+        form .form-select,
+        form .form-control,
+        form .btn {
+            box-shadow: none !important;
+            font-size: 0.95rem;
+        }
+
+    </style>
+</head>
+
+<body>
+    <header class="py-3">
+        <div class="container d-flex justify-content-between align-items-center">
+            <a asp-controller="Home" asp-action="Featured" asp-area="" method="post">
+                <img src="~/LVComputer/logo_lvcomputer.jpg" alt="LVComputer Logo" class="rounded-circle" width="80">
+            </a>
+            <div>
+                <h1 class="h4 mb-1">LV Computer</h1>
+                <p class="mb-0">PC Gaming - Hi End - Gaming Gear</p>
+            </div>
+            <form class="d-flex mx-auto" method="get" action="@Url.Action("Index", "Home")" style="width: 600px;">
+                <div class="d-flex w-100 rounded-pill overflow-hidden" style="background-color: #ddd;">
+                    <select name="categoryId"
+                            class="form-select border-0 rounded-0"
+                            style="width: 25%; background-color: #ddd;"
+                            onchange="this.form.submit()">
+                        <option value="">Danh Mục</option>
+                        @foreach (var category in ViewBag.Categories ?? Enumerable.Empty<Website_BanMayTinh.Models.Category>())
+                        {
+                            <option value="@category.Id">@category.Name</option>
+                        }
+                    </select>
+
+                    <input type="text"
+                           class="form-control border-0 rounded-0"
+                           name="searchTerm"
+                           placeholder="Nhập từ khóa tìm kiếm..."
+                           style="width: 50%; background-color: #ddd;" />
+
+                    <button type="submit"
+                            class="btn text-white rounded-0"
+                            style="width: 25%; background-color: #ffc107;">
+                        Search
+                    </button>
+                </div>
+            </form>
+
+            <div style="display: flex; align-items: center">
+                <a asp-controller="PC" asp-action="Build" class="text-decoration-none text-dark me-3">
+                    <img src="~/LVComputer/computer.png" alt="Xây dựng cấu hình" width="25"> Xây dựng cấu hình
+                </a>
+                <a class="text-decoration-none text-dark">
+                    @await Component.InvokeAsync("CartSummary")
+                    Giỏ hàng
+                </a>
+            </div>
+        </div>
+    </header>
+
+    <div>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" style="background-color: #222;">
+            <div class="container">
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav"
+                        aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarNav">
+                    <ul class="navbar-nav me-auto">
+                        <li class="nav-item dropdown">
+                            <a class="nav-link dropdown-toggle" href="#" data-bs-toggle="dropdown">Danh mục sản phẩm</a>
+                            @await Component.InvokeAsync("CategoryMenu")
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="about" asp-controller="Home">Giới thiệu</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" asp-action="contact" asp-controller="Home">Liên hệ</a>
+                        </li>
+						@if (User.IsInRole("Admin"))
+						{
+							<li class="nav-item">
+								<a class="nav-link" asp-area="Admin" asp-controller="Product" asp-action="Index">Quản lý</a>
+							</li>
+						})
+                    </ul>
+                </div>
+                <partial name="_LoginPartial" />
+            </div>
+        </nav>
+
+        @{
+            var controller = ViewContext.RouteData.Values["controller"]?.ToString();
+            var action = ViewContext.RouteData.Values["action"]?.ToString();
+        }
+
+        @if (controller == "Home" && action == "Featured")
+        {
+            <div class="container-fluid px-0">
+                <div id="carouselExampleSlidesOnly" class="carousel slide" data-bs-ride="carousel">
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="~/LVComputer/Banner1.png" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/LVComputer/Pannel2.jpg" class="d-block w-100" alt="...">
+                        </div>
+                        <div class="carousel-item">
+                            <img src="~/LVComputer/Banner3.jpg" class="d-block w-100" alt="...">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        }
+    </div>
+
+
+
+    <div class="container my-5">
+        @RenderBody()
+    </div>
+
+    <footer class="bg-dark py-4 mt-5">
+    <div class="container">
+        <div class="row">
+            <!-- Thông tin công ty -->
+            <div class="col-md-4">
+                <h5 class="text-danger fw-bold">CỬA HÀNG MÁY TÍNH LV COMPUTER</h5>
+                <p class="fw-bold">TIN HỌC LÂM VÂN</p>
+                <p>Chủ sở hữu: Ông Lâm Nguyễn</p>
+                    <p><strong>Địa chỉ:</strong> 232 Quốc Lộ 50, TT Cần Giuộc, H. Cần Giuộc, Long An</p>
+                <p><strong>Thời gian làm việc:</strong></p>
+                <p>Thứ 2 - 7: <span class="fw-bold">Từ 8h sáng đến 7h tối.</span></p>
+                <p>Chủ nhật: <span class="fw-bold">Từ 9h sáng đến 6h tối.</span></p>
+                <p><strong>Liên hệ:</strong> 079 717 9432 - Phúc Trần</p>
+            </div>
+
+            <!-- Bản đồ -->
+            <div class="col-md-4 text-center">
+                <h5 class="fw-bold text-success">BẢN ĐỒ ĐẾN <span class="text-success">LV COMPUTER</span></h5>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4825.524956211651!2d106.66863192452479!3d10.602887412482822!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317536dbd16c8d03%3A0x8b45be2095d9fa7a!2sLV-Computer!5e1!3m2!1svi!2s!4v1743781282274!5m2!1svi!2s" width="380" height="284" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+
+            <div class="col-md-4 text-center">
+                <h5 class="fw-bold text-success">BẢN ĐỒ ĐẾN <span class="text-success">LV GAMING</span></h5>
+                <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.5748719694066!2d106.66600817485424!3d10.597227589540815!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317537d3eaa76de3%3A0x106c514ed7598e02!2sLV%20GAMING!5e1!3m2!1svi!2s!4v1743783591919!5m2!1svi!2s" width="380" height="284" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+            </div>
+        </div>
+    </div>
+</footer>
+
+	<script src="~/js/Search.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    @RenderSection("Scripts", required: false)
+</body>
+
+</html>

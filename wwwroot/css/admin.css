@@ -1,0 +1,133 @@
+﻿/* Căn chỉnh toàn bộ container */
+.container {
+    padding: 20px 20px;
+}
+
+/* Tiêu đề */
+h3.text-success.fw-bold {
+    font-size: 1.9rem;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+/* Dropdown bộ lọc */
+.form-select {
+    min-width: 170px;
+    border-radius: 10px;
+    font-size: 0.95rem;
+    padding: 8px 10px;
+    margin-right: 10px;
+    transition: all 0.2s ease;
+}
+
+/* Input tìm kiếm */
+form.d-flex input.form-control {
+    height: 40px;
+    border-radius: 10px;
+    padding-left: 15px;
+}
+
+/* Nút tìm kiếm */
+form.d-flex button {
+    height: 40px;
+    border-radius: 10px;
+    font-weight: 500;
+    margin-left: 10px;
+    transition: background-color 0.2s ease;
+}
+
+/* Bảng sản phẩm */
+.table {
+    background-color: white;
+    border-radius: 12px;
+    overflow: hidden;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+}
+
+    /* Tiêu đề bảng */
+    .table thead {
+        background: linear-gradient(to right, #e0f2f1, #b2dfdb);
+        font-weight: bold;
+        font-size: 15px;
+        text-align: center;
+    }
+
+    /* Cột nội dung */
+    .table th, .table td {
+        vertical-align: middle;
+        text-align: center;
+        padding: 10px 12px;
+    }
+
+    /* Ảnh sản phẩm */
+    .table img {
+        max-height: 80px;
+        border-radius: 8px;
+        transition: transform 0.3s ease;
+    }
+
+        .table img:hover {
+            transform: scale(1.05);
+        }
+
+/* Hành động - đảm bảo trên 1 dòng */
+.action-buttons {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: 6px;
+}
+
+/* Nút thao tác */
+    .action-buttons .btn {
+        min-width: 80px; /* nhỏ hơn nhưng vẫn đều */
+        padding: 4px 8px;
+        font-size: 0.85rem; /* nhỏ hơn một chút */
+        border-radius: 6px;
+        transition: all 0.2s ease;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        line-height: 1;
+    }
+
+        .action-buttons .btn i {
+            margin-right: 4px;
+            font-size: 0.9rem;
+        }
+
+        /* Hiệu ứng hover */
+        .action-buttons .btn:hover {
+            transform: translateY(-1px);
+            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+        }
+
+/* Phân trang */
+.pagination .page-link {
+    border-radius: 8px;
+    color: #00796b;
+}
+
+.pagination .page-item.active .page-link {
+    background-color: #00796b;
+    border-color: #00796b;
+    color: white;
+}
+
+@media (max-width: 768px) {
+    .action-buttons {
+        flex-direction: column;
+        gap: 5px;
+    }
+
+    .form-select, .form-control, .btn {
+        width: 100%;
+        margin-bottom: 10px;
+    }
+
+    h3.text-success {
+        font-size: 1.5rem;
+    }
+}
+

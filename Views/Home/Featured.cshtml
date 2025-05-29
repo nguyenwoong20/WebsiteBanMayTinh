@@ -1,0 +1,68 @@
+﻿@model List<Website_BanMayTinh.Models.Product>
+
+@{
+    ViewData["Title"] = "Sản phẩm nổi bật";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2 class="mt-3 mb-3 text-center">🌟 Sản phẩm nổi bật</h2>
+
+<div class="row">
+    @foreach (var product in Model)
+    {
+        <div class="col-md-3 mb-4">
+            <div class="card">
+                <img src="@product.ImageUrl" class="card-img-top" alt="@product.Name" style="height: 300px; object-fit: contain" />
+                <div class="card-body">
+                    <a class="card-title" href="/Home/Details/@product.Id">@product.Name</a>
+                    <p class="card-text">@product.Price.ToString("N0") ₫</p>
+                    <a href="@Url.Action("Details", "Home", new { id = product.Id })" class="btn btn-primary">Xem chi tiết</a>
+					<a href="@Url.Action("AddToCart", "Cart", new { id = product.Id })" class="btn btn-success">
+                        <i class="bi bi-cart-plus"></i>Thêm vào giỏ
+                    </a>
+                </div>
+            </div>
+        </div>
+    }
+</div>
+<link href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css" rel="stylesheet">
+
+<style>
+    .card {
+        background: linear-gradient(to bottom right, #fffbea, #fff3c4);
+        border: 1px solid #ffe58f;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        color: #000;
+        transition: transform 0.2s ease-in-out;
+    }
+
+    .card:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 16px rgba(0, 0, 0, 0.15);
+    }
+
+    .card-title {
+        color: #d4a800;
+        font-weight: 600;
+    }
+
+    .card-text {
+        color: #b53e00;
+        font-weight: bold;
+    }
+
+    .btn-primary {
+        background-color: #ffcc00;
+        border: none;
+        color: #000;
+        font-weight: 600;
+    }
+
+    .btn-primary:hover {
+       background-color: #e6b800;
+        color: #000;
+    }
+
+</style>
+
+

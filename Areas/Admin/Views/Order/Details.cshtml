@@ -1,0 +1,100 @@
+﻿@model Website_BanMayTinh.Models.Order
+
+@{
+    ViewData["Title"] = "Chi Tiết Đơn Hàng";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<h2 class="text-center"><i class="fas fa-shopping-cart"></i> Chi Tiết Đơn Hàng</h2>
+
+<div class="card p-3">
+    <!-- Thông tin khách hàng -->
+    <div class="card mb-3">
+        <div class="card-header bg-light">
+            <i class="fas fa-user"></i> <b>Thông Tin Khách Hàng</b>
+        </div>
+        <div class="card-body">
+            <p><strong><i class="fas fa-user"></i> Tên:</strong> @Model.User?.FullName</p>
+            <p><strong><i class="fas fa-envelope"></i> Email:</strong> @Model.User?.Email</p>
+            <p><strong><i class="fas fa-phone"></i> Số điện thoại:</strong> @Model.User?.PhoneNumber</p>
+        </div>
+    </div>
+
+    <!-- Thông tin đặt hàng -->
+    <div class="card mb-3">
+        <div class="card-header bg-light">
+            <i class="fas fa-briefcase"></i> <b>Thông Tin Đặt Hàng</b>
+        </div>
+        <div class="card-body">
+            <p><strong><i class="fas fa-file-alt"></i> Mã đơn:</strong> @Model.Id</p>
+            <p><strong><i class="fas fa-calendar-alt"></i> Ngày đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+            <p><strong><i class="fas fa-map-marker-alt"></i> Địa chỉ giao hàng:</strong> @Model.ShippingAddress</p>
+            <p><strong><i class="fas fa-comment"></i> Ghi chú của khách:</strong> @Model.Notes</p>
+        </div>
+    </div>
+
+    <!-- Danh sách sản phẩm -->
+    <div class="card mb-3">
+        <div class="card-header bg-light">
+            <i class="fas fa-box"></i> <b>Sản Phẩm Trong Đơn Hàng</b>
+        </div>
+        <div class="card-body">
+            <table class="table table-bordered">
+                <thead class="table-success">
+                    <tr>
+                        <th>Mã sản phẩm</th>
+                        <th>Tên sản phẩm</th>
+                        <th>Số lượng</th>
+                        <th>Giá</th>
+                        <th>Thành tiền</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var item in Model.OrderDetails)
+                    {
+                        <tr>
+                            <td>@item.Product.Id</td>
+                            <td>@item.Product.Name</td>
+                            <td>@item.Quantity</td>
+                            <td>@item.Price.ToString("N2")</td>
+                            <td>@((item.Quantity * item.Price).ToString("N2"))</td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <!-- Tổng tiền -->
+    <div class="text-end mt-2">
+        <h4 class="text-danger">
+            <i class="fas fa-coins"></i> Tổng tiền: @Model.TotalAmount.ToString("N2")
+        </h4>
+        @if (!Model.IsPay)
+        {
+            <form asp-action="ConfirmPayment" asp-route-id="@Model.Id" method="post" class="d-inline">
+                <button type="submit" class="btn btn-warning mt-2">
+                    <i class="fas fa-money-check-alt"></i> Xác nhận đã thanh toán
+                </button>
+            </form>
+        }
+        else
+        {
+            <div class="alert alert-success mt-2 d-inline-block">
+                <i class="fas fa-check-circle"></i> Đơn hàng đã được thanh toán.
+            </div>
+        }
+
+    </div>
+
+    <!-- Nút quay lại -->
+    <div class="text-center mt-3">
+        <a asp-action="Index" class="btn btn-primary">
+            <i class="fas fa-arrow-left"></i> Quay lại danh sách
+        </a>
+    </div>
+</div>

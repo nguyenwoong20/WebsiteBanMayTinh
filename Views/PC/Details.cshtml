@@ -1,0 +1,129 @@
+﻿@model Website_BanMayTinh.Models.Product
+
+@{
+    ViewData["Title"] = "Chi tiết sản phẩm";
+	Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-color: #f8f9fa;
+        margin: 0;
+        padding: 0;
+    }
+
+    .product-container {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        padding: 40px;
+        max-width: 600px;
+        margin: auto;
+        background-color: #fff;
+        border-radius: 10px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        text-align: center;
+    }
+
+    .product-title {
+        font-size: 26px;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 15px;
+    }
+
+    .product-image {
+        width: 100%;
+        max-width: 350px;
+        height: auto;
+        border-radius: 8px;
+        padding: 10px;
+        background-color: #f1f1f1;
+    }
+
+    .product-info {
+        font-size: 18px;
+        color: #555;
+        margin-top: 10px;
+    }
+
+    .product-price {
+        font-size: 22px;
+        font-weight: bold;
+        color: #e60000;
+        margin: 15px 0;
+    }
+
+    .product-description {
+        text-align: left; /* Căn trái để không bị lệch */
+        white-space: pre-line; /* Giữ nguyên xuống dòng */
+        font-size: 16px; /* Điều chỉnh kích thước chữ */
+        line-height: 1.6; /* Tăng khoảng cách giữa các dòng */
+    }
+
+
+    .btn-back {
+        display: inline-block;
+        background-color: #007bff;
+        color: white;
+        padding: 12px 20px;
+        font-size: 16px;
+        border-radius: 5px;
+        text-decoration: none;
+        transition: background 0.3s ease-in-out;
+        margin-top: 15px;
+    }
+
+        .btn-back:hover {
+            background-color: #0056b3;
+        }
+</style>
+
+<div class="product-container">
+    <h2 class="product-title">@Model.Name</h2>
+    <img src="@Model.ImageUrl" alt="@Model.Name" class="product-image" />
+
+    <p class="product-info"><strong>Loại:</strong> @Model.Category?.Name</p>
+    <p class="product-price">@Model.Price.ToString("#,##0") VND</p>
+    <p class="product-info"><strong>Mô tả:</strong></p>
+    <p class="product-description">@Html.Raw(Model.Description.Replace("\n", "<br>"))</p>
+
+
+    <button type="button" class="btn btn-outline-primary" onclick="goBack()">
+        <i class="bi bi-arrow-left"></i> Quay lại
+    </button>
+
+</div>
+
+@section Scripts {
+    <script>
+        function goBack() {
+            const urlParams = new URLSearchParams(window.location.search);
+            const fromBuild = urlParams.get('fromBuild');
+            const partId = urlParams.get('partId');
+
+            if (fromBuild === 'true' && partId) {
+                // Thử quay lại trang trước đó (trang Build)
+                window.history.back();
+
+                // Sau một khoảng thời gian ngắn, kiểm tra xem trang Build có còn không và mở lại modal
+                setTimeout(() => {
+                    // Kiểm tra xem phần tử modal tồn tại trên trang (có thể cần điều chỉnh selector)
+                    const buildModal = document.getElementById('modal' + partId);
+                    if (buildModal) {
+                        $(buildModal).modal('show');
+                    } else {
+                        // Nếu modal không còn, có thể điều hướng về trang Build thông thường
+                        window.location.href = '@Url.Action("Build", "PC")';
+                    }
+                }, 100); // Điều chỉnh thời gian chờ nếu cần
+            } else {
+                // Nếu không đến từ trang Build, quay lại trang trước đó thông thường
+                window.history.back();
+            }
+        }
+    </script>
+}

@@ -1,0 +1,31 @@
+﻿@model Order
+
+<div class="container mt-5">
+    <h2 class="text-center fw-bold text-primary">Thanh Toán</h2>
+
+    <div class="card shadow-sm p-4">
+        <form asp-action="Checkout" method="post">
+            <div class="mb-3">
+                <label asp-for="ShippingAddress" class="form-label">Địa chỉ giao hàng</label>
+                <input asp-for="ShippingAddress" class="form-control" placeholder="Nhập địa chỉ của bạn..." />
+            </div>
+            <div class="mb-3">
+                <label asp-for="Notes" class="form-label">Ghi chú</label>
+                <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Nhập ghi chú thêm..."></textarea>
+            </div>
+            <button type="submit" class="btn btn-primary w-100 fw-bold">Đặt hàng</button>
+        </form>
+    </div>
+</div>
+
+<style>
+    body {
+        background-color: #f8f9fa;
+    }
+
+    .card {
+        max-width: 500px;
+        margin: auto;
+        border-radius: 10px;
+    }
+</style>

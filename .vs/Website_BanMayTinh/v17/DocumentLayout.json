@@ -1,0 +1,627 @@
+{
+  "Version": 1,
+  "WorkspaceRootPath": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\",
+  "Documents": [
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\orders\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:controllers\\orderscontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\identity\\pages\\account\\resendemailconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\identity\\pages\\account\\resendemailconfirmation.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\identity\\pages\\account\\resendemailconfirmation.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\identity\\pages\\account\\resendemailconfirmation.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\identity\\pages\\account\\register.cshtml.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\home\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\home\\details.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:controllers\\homecontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\admin\\controllers\\productcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:models\\product.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\home\\featured.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\home\\featured.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\products\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\shared\\_layout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:wwwroot\\css\\site.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\admin\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\admin\\views\\category\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:wwwroot\\css\\admin.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\admin\\views\\product\\index.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\admin\\controllers\\categorycontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:wwwroot\\css\\main.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\shared\\_mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\shared\\_mylayout.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\identity\\pages\\account\\forgotpassword.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:program.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:scaffoldingreadme.txt||{8B382828-6202-11D1-8870-0000F87579D2}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\identity\\pages\\account\\login.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:wwwroot\\js\\site.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\pc\\build.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\pc\\build.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:controllers\\cartcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\wwwroot\\js\\pc-build.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:wwwroot\\js\\pc-build.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\wwwroot\\js\\search.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:wwwroot\\js\\search.js||{14D17961-FE51-464D-9111-C4AF11D7D99A}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\wwwroot\\css\\pc-build.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:wwwroot\\css\\pc-build.css||{A5401142-F49D-43DB-90B1-F57BA349E55C}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\models\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:models\\cartitemdto.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\controllers\\pccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:controllers\\pccontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\views\\orders\\myorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:views\\orders\\myorders.cshtml||{40D31677-CBC0-4297-A9EF-89D907823A98}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\areas\\admin\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:areas\\admin\\controllers\\brandcontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\migrations\\20250526162817_removeslugfromproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:migrations\\20250526162817_removeslugfromproduct.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|d:\\workspace_code\\lythuyet_laptrinhwebsite\\doanmonlaptrinhweb\\website_banmaytinh\\migrations\\20250526161448_addslugtoproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{B22556DD-EE51-4EE1-BF0A-DA46D8665902}|Website_BanMayTinh.csproj|solutionrelative:migrations\\20250526161448_addslugtoproducts.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    }
+  ],
+  "DocumentGroupContainers": [
+    {
+      "Orientation": 0,
+      "VerticalTabListWidth": 256,
+      "DocumentGroups": [
+        {
+          "DockedWidth": 200,
+          "SelectedChildIndex": 2,
+          "Children": [
+            {
+              "$type": "Bookmark",
+              "Name": "ST:0:0:{e5c86464-96be-4d7c-9a8b-abcb3bbf5f92}"
+            },
+            {
+              "$type": "Bookmark",
+              "Name": "ST:1:0:{e8b06f52-6d01-11d2-aa7d-00c04f990343}"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 0,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Orders\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Orders\\Details.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Orders\\Details.cshtml",
+              "RelativeToolTip": "Views\\Orders\\Details.cshtml",
+              "ViewState": "AgIAAA8AAAAAAAAAAAAAADUAAABpAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-27T14:56:22.517Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 2,
+              "Title": "ResendEmailConfirmation.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-27T14:51:45.926Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
+              "Title": "Details.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Home\\Details.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Details.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Home\\Details.cshtml",
+              "RelativeToolTip": "Views\\Home\\Details.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-26T16:15:24.25Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 36,
+              "Title": "20250526161448_AddSlugToProducts.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Migrations\\20250526161448_AddSlugToProducts.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250526161448_AddSlugToProducts.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Migrations\\20250526161448_AddSlugToProducts.cs",
+              "RelativeToolTip": "Migrations\\20250526161448_AddSlugToProducts.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T16:14:49.161Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 10,
+              "Title": "Product.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Models\\Product.cs",
+              "RelativeDocumentMoniker": "Models\\Product.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Models\\Product.cs",
+              "RelativeToolTip": "Models\\Product.cs",
+              "ViewState": "AgIAAAUAAAAAAAAAAAAAwBIAAAAoAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T16:10:29.232Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 8,
+              "Title": "HomeController.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\HomeController.cs",
+              "RelativeDocumentMoniker": "Controllers\\HomeController.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\HomeController.cs",
+              "RelativeToolTip": "Controllers\\HomeController.cs",
+              "ViewState": "AgIAAEgAAAAAAAAAAAAwwF8AAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T05:24:43.976Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 6,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Home\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Index.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Home\\Index.cshtml",
+              "RelativeToolTip": "Views\\Home\\Index.cshtml",
+              "ViewState": "AgIAAGwAAAAAAAAAAAAAAIAAAABcAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-26T16:00:28.675Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 1,
+              "Title": "OrdersController.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\OrdersController.cs",
+              "RelativeDocumentMoniker": "Controllers\\OrdersController.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\OrdersController.cs",
+              "RelativeToolTip": "Controllers\\OrdersController.cs",
+              "ViewState": "AgIAABAAAAAAAAAAAAAQwDUAAAAaAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T16:27:45.152Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 3,
+              "Title": "ResendEmailConfirmation.cshtml.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ResendEmailConfirmation.cshtml.cs",
+              "ViewState": "AgIAADsAAAAAAAAAAAAswAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-27T14:52:30.893Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 4,
+              "Title": "Register.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAADkAAAAWAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T06:15:58.074Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 5,
+              "Title": "Register.cshtml.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Register.cshtml.cs",
+              "ViewState": "AgIAALUAAAAAAAAAAAAwwMwAAAAPAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T07:09:23.788Z",
+              "EditorCaption": ""
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 35,
+              "Title": "20250526162817_RemoveSlugFromProduct.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Migrations\\20250526162817_RemoveSlugFromProduct.cs",
+              "RelativeDocumentMoniker": "Migrations\\20250526162817_RemoveSlugFromProduct.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Migrations\\20250526162817_RemoveSlugFromProduct.cs",
+              "RelativeToolTip": "Migrations\\20250526162817_RemoveSlugFromProduct.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABkAAAAJAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-26T16:28:17.143Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 9,
+              "Title": "ProductController.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\ProductController.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Controllers\\ProductController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\ProductController.cs",
+              "ViewState": "AgIAAGYAAAAAAAAAAAAAAH8AAAAYAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T05:49:55.899Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 21,
+              "Title": "ForgotPassword.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\ForgotPassword.cshtml",
+              "ViewState": "AgIAAAYAAAAAAAAAAAAAACgAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T06:41:13.719Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 17,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Product\\Index.cshtml",
+              "ViewState": "AgIAACQAAAAAAAAAAAAAAE4AAAAiAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-16T05:50:04.471Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 23,
+              "Title": "ScaffoldingReadMe.txt",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\ScaffoldingReadMe.txt",
+              "RelativeDocumentMoniker": "ScaffoldingReadMe.txt",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\ScaffoldingReadMe.txt",
+              "RelativeToolTip": "ScaffoldingReadMe.txt",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003109|",
+              "WhenOpened": "2025-05-14T06:38:20.795Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 11,
+              "Title": "Featured.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Home\\Featured.cshtml",
+              "RelativeDocumentMoniker": "Views\\Home\\Featured.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Home\\Featured.cshtml",
+              "RelativeToolTip": "Views\\Home\\Featured.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABAAAAA9AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-05T04:56:57.955Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 16,
+              "Title": "admin.css",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\admin.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\admin.css",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\admin.css",
+              "RelativeToolTip": "wwwroot\\css\\admin.css",
+              "ViewState": "AgIAACoAAAAAAAAAAAAAABkAAAARAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-16T05:56:13.804Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 12,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Products\\Index.cshtml",
+              "RelativeDocumentMoniker": "Views\\Products\\Index.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Products\\Index.cshtml",
+              "RelativeToolTip": "Views\\Products\\Index.cshtml",
+              "ViewState": "AgIAACcAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-26T16:00:11.763Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 13,
+              "Title": "_Layout.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Shared\\_Layout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_Layout.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Shared\\_Layout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_Layout.cshtml",
+              "ViewState": "AgIAAO4AAAAAAAAAAAAwwAkBAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-05T04:33:26.85Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 14,
+              "Title": "site.css",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\site.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\site.css",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\site.css",
+              "RelativeToolTip": "wwwroot\\css\\site.css",
+              "ViewState": "AgIAADwAAAAAAAAAAAAAAFYAAAAnAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-14T06:19:00.454Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 15,
+              "Title": "Index.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Views\\Category\\Index.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Views\\Category\\Index.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Views\\Category\\Index.cshtml",
+              "RelativeToolTip": "Areas\\Admin\\Views\\Category\\Index.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAA8AAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-16T06:23:50.447Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 18,
+              "Title": "CategoryController.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\CategoryController.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Controllers\\CategoryController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\CategoryController.cs",
+              "ViewState": "AgIAAAkAAAAAAAAAAAAAABsAAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-16T06:23:46.056Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 25,
+              "Title": "site.js",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\js\\site.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\site.js",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\js\\site.js",
+              "RelativeToolTip": "wwwroot\\js\\site.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-14T06:22:36.615Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 19,
+              "Title": "main.css",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\main.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\main.css",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\main.css",
+              "RelativeToolTip": "wwwroot\\css\\main.css",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABIAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-05T04:49:10.148Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 20,
+              "Title": "_MyLayout.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Shared\\_MyLayout.cshtml",
+              "RelativeDocumentMoniker": "Views\\Shared\\_MyLayout.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Shared\\_MyLayout.cshtml",
+              "RelativeToolTip": "Views\\Shared\\_MyLayout.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAwAAABvAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-16T06:00:23.852Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 24,
+              "Title": "Login.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeDocumentMoniker": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "RelativeToolTip": "Areas\\Identity\\Pages\\Account\\Login.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAABEAAABVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-05-14T06:14:14.663Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 29,
+              "Title": "Search.js",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\js\\Search.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\Search.js",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\js\\Search.js",
+              "RelativeToolTip": "wwwroot\\js\\Search.js",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-14T06:08:31.525Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 31,
+              "Title": "CartItemDTO.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Models\\CartItemDTO.cs",
+              "RelativeDocumentMoniker": "Models\\CartItemDTO.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Models\\CartItemDTO.cs",
+              "RelativeToolTip": "Models\\CartItemDTO.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAUAAAApAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T05:59:23.433Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 22,
+              "Title": "Program.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Program.cs",
+              "RelativeDocumentMoniker": "Program.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Program.cs",
+              "RelativeToolTip": "Program.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAoAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T06:38:38.778Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 27,
+              "Title": "CartController.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\CartController.cs",
+              "RelativeDocumentMoniker": "Controllers\\CartController.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\CartController.cs",
+              "RelativeToolTip": "Controllers\\CartController.cs",
+              "ViewState": "AgIAAJ4AAAAAAAAAAADwv7IAAAAuAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-05-14T05:58:48.646Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 30,
+              "Title": "pc-build.css",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\pc-build.css",
+              "RelativeDocumentMoniker": "wwwroot\\css\\pc-build.css",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\css\\pc-build.css",
+              "RelativeToolTip": "wwwroot\\css\\pc-build.css",
+              "ViewState": "AgIAAEQAAAAAAAAAAAAkwKQAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.003000|",
+              "WhenOpened": "2025-05-12T16:18:14.598Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 28,
+              "Title": "pc-build.js",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\js\\pc-build.js",
+              "RelativeDocumentMoniker": "wwwroot\\js\\pc-build.js",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\wwwroot\\js\\pc-build.js",
+              "RelativeToolTip": "wwwroot\\js\\pc-build.js",
+              "ViewState": "AgIAAIwBAAAAAAAAAAAwwJYBAAAfAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.001646|",
+              "WhenOpened": "2025-05-12T16:14:58.058Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 26,
+              "Title": "Build.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\PC\\Build.cshtml",
+              "RelativeDocumentMoniker": "Views\\PC\\Build.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\PC\\Build.cshtml",
+              "RelativeToolTip": "Views\\PC\\Build.cshtml",
+              "ViewState": "AgIAAPcAAAAAAAAAAAAIwAYBAAAVAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-09T06:17:41.101Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 32,
+              "Title": "PCController.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\PCController.cs",
+              "RelativeDocumentMoniker": "Controllers\\PCController.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Controllers\\PCController.cs",
+              "RelativeToolTip": "Controllers\\PCController.cs",
+              "ViewState": "AgIAACEAAAAAAAAAAAAYwCgAAAAIAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-09T06:16:53.052Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 33,
+              "Title": "MyOrders.cshtml",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Orders\\MyOrders.cshtml",
+              "RelativeDocumentMoniker": "Views\\Orders\\MyOrders.cshtml",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Views\\Orders\\MyOrders.cshtml",
+              "RelativeToolTip": "Views\\Orders\\MyOrders.cshtml",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAB0AAABRAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000759|",
+              "WhenOpened": "2025-04-08T13:47:59.18Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 34,
+              "Title": "BrandController.cs",
+              "DocumentMoniker": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Controllers\\BrandController.cs",
+              "RelativeDocumentMoniker": "Areas\\Admin\\Controllers\\BrandController.cs",
+              "ToolTip": "D:\\WORKSPACE_CODE\\LyThuyet_LapTrinhWebsite\\DoAnMonLapTrinhWeb\\Website_BanMayTinh\\Areas\\Admin\\Controllers\\BrandController.cs",
+              "RelativeToolTip": "Areas\\Admin\\Controllers\\BrandController.cs",
+              "ViewState": "AgIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA==",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2025-04-08T13:43:17.624Z"
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

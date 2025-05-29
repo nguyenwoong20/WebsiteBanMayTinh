@@ -1,0 +1,102 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>@ViewData["Title"] - Website_BanMayTinh</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Website_BanMayTinh.styles.css" asp-append-version="true" />
+    <link href="https://fonts.googleapis.com/css2?family=Roboto&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f4f6f9;
+        }
+    </style>
+
+</head>
+<body>
+    <div class="d-flex" id="wrapper">
+        <!-- Sidebar -->
+        <div class="bg-dark border-end" id="sidebar-wrapper">   
+            <div class="sidebar-heading text-white fw-bold text-center py-4">
+                <i class="fas fa-laptop-code me-2"></i>Admin Panel
+            </div>
+            <div class="list-group list-group-flush">
+                <a asp-controller="Home" asp-action="Featured" asp-area="" method="post" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-home me-2"></i>Home
+                </a>
+                <a asp-controller="Product" asp-action="Index" asp-area="Admin" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-boxes me-2"></i>Products
+                </a>
+                <a asp-controller="Category" asp-action="Index" asp-area="Admin" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-tags me-2"></i>Categories
+                </a>
+                <a asp-controller="Brand" asp-action="Index" asp-area="Admin" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-industry me-2"></i>Brands
+                </a>
+                <a asp-controller="Order" asp-action="Index" asp-area="Admin" class="list-group-item list-group-item-action bg-dark text-white">
+					<i class="fas fa-shopping-cart me-2"></i>Orders
+                </a>
+                <a asp-controller="Featured" asp-action="Index" asp-area="Admin" class="list-group-item list-group-item-action bg-dark text-white">
+                    <i class="fas fa-star me-2"></i>Featured Products
+                </a>
+            </div>
+        </div>
+        <!-- /#sidebar-wrapper -->
+        <!-- Page Content -->
+        <div id="page-content-wrapper" class="flex-fill">
+            <nav class="navbar navbar-expand-lg navbar-light bg-white border-bottom shadow-sm px-3">
+                <button class="btn btn-primary" id="menu-toggle">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <div class="ms-auto fw-bold">LV Computer Admin</div>
+            </nav>
+
+            <div class="container-fluid py-4">
+                @RenderBody()
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-dark text-white py-3 mt-auto text-center">
+        &copy; LV Computer - Since 2017 | Admin Panel
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script>
+        $("#menu-toggle").click(function (e) {
+            e.preventDefault();
+            $("#wrapper").toggleClass("toggled");
+        });
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+
+    <style>
+        #wrapper {
+            display: flex;
+            width: 100%;
+        }
+
+        #sidebar-wrapper {
+            min-width: 220px;
+            max-width: 220px;
+        }
+
+        #page-content-wrapper {
+            width: 100%;
+        }
+
+        #wrapper.toggled #sidebar-wrapper {
+            margin-left: -220px;
+        }
+    </style>
+</body>
+</html>

@@ -1,0 +1,47 @@
+﻿
+@{
+    ViewData["Title"] = "Liên hệ";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<section class="contact-section py-5">
+    <div class="container">
+        <h2 class="section-title text-center mb-4">Liên Hệ Với Chúng Tôi</h2>
+
+        <div class="row">
+            <div class="col-md-6">
+                <p class="lead">Nếu bạn có bất kỳ câu hỏi nào về sản phẩm hoặc dịch vụ của chúng tôi, đừng ngần ngại liên hệ với chúng tôi. Chúng tôi sẽ trả lời bạn trong thời gian sớm nhất.</p>
+
+                <ul class="list-unstyled">
+                    <li><i class="fas fa-phone-alt me-2"></i><strong>Điện thoại:</strong> 078 971 6419</li>
+                    <li>
+                        <a href="https://zalo.me/0793486705" class="text-decoration-none" target="_blank">
+                            <i class="fas fa-comments me-2"></i><strong>Zalo tư vấn:</strong> 079 717 9432 - Phúc Trần
+                        </a>
+                    </li>
+                    <li><i class="fab fa-facebook me-2"></i><strong>Facebook:</strong> <a href="https://www.facebook.com/maytinhgiareLVcomputer" class="text-decoration-none" target="_blank">Máy Tính Trả Góp Long An - LV Computer</a></li>
+                    <li><i class="fas fa-map-marker-alt me-2"></i><strong>Địa chỉ:</strong> 232 Quốc Lộ 50, TT Cần Giuộc, H. Cần Giuộc, Long An</li>
+                    <li><i class="fas fa-location-dot me-2"></i><strong>Xem trên bản đồ:</strong> <a href="https://maps.app.goo.gl/Tp1XZW57GEPNxQnL8" target="_blank" class="text-decoration-none">Click here</a></li>
+                    <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3768.5055285059652!2d106.66677583489607!3d10.60286104835974!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x317536dbd16c8d03%3A0x8b45be2095d9fa7a!2sLV-Computer!5e1!3m2!1svi!2s!4v1743782160774!5m2!1svi!2s" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </ul>
+            </div>
+            <div class="col-md-6">
+                <form>
+                    <div class="mb-3">
+                        <label for="name" class="form-label">Họ và Tên</label>
+                        <input type="text" class="form-control" id="name" placeholder="Nhập họ và tên của bạn">
+                    </div>
+                    <div class="mb-3">
+                        <label for="email" class="form-label">Email</label>
+                        <input type="email" class="form-control" id="email" placeholder="Nhập email của bạn">
+                    </div>
+                    <div class="mb-3">
+                        <label for="message" class="form-label">Lời nhắn</label>
+                        <textarea class="form-control" id="message" rows="4" placeholder="Nhập lời nhắn của bạn"></textarea>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Gửi</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>

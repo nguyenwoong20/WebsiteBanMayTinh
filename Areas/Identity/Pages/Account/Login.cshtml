@@ -1,0 +1,46 @@
+﻿@page
+@model LoginModel
+@{
+    ViewData["Title"] = "Đăng nhập";
+}
+
+<div class="fullscreen-center">
+    <div class="card shadow-lg border-0" style="width: 500px;">
+        <div class="card-header bg-dark text-warning text-center rounded-top">
+            <h4 class="mb-0">🔐 Đăng nhập tài khoản</h4>
+        </div>
+        <div class="card-body bg-light rounded-bottom">
+            <form method="post">
+                <div asp-validation-summary="All" class="text-danger mb-3"></div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Email" class="font-weight-bold">Email</label>
+                    <input asp-for="Input.Email" class="form-control rounded-pill" />
+                    <span asp-validation-for="Input.Email" class="text-danger"></span>
+                </div>
+
+                <div class="form-group">
+                    <label asp-for="Input.Password" class="font-weight-bold">Mật khẩu</label>
+                    <input asp-for="Input.Password" class="form-control rounded-pill" />
+                    <span asp-validation-for="Input.Password" class="text-danger"></span>
+                </div>
+
+                <div class="form-group form-check">
+                    <input asp-for="Input.RememberMe" class="form-check-input" />
+                    <label asp-for="Input.RememberMe" class="form-check-label">Ghi nhớ đăng nhập</label>
+                </div>
+
+                <button type="submit" class="btn btn-warning btn-block rounded-pill font-weight-bold shadow-sm">Đăng nhập</button>
+
+                <div class="mt-4 text-center">
+                    <a asp-page="./Register" class="text-primary">Chưa có tài khoản? <strong>Đăng ký</strong></a><br />
+                    <a asp-page="./ForgotPassword" class="text-secondary small">Quên mật khẩu?</a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

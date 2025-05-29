@@ -1,0 +1,60 @@
+﻿<style>
+	.cart-wrapper .cart-icon {
+		margin-right: 0px;
+		border-radius: unset;
+		
+	}
+
+	.cart-wrapper {
+		position: relative;
+		display: flex;
+		width: 40px;
+		height: 40px;
+		-webkit-box-align: center;
+		align-items: center;
+		-webkit-box-pack: center;
+		justify-content: center;
+		text-decoration: none;
+	}
+
+	.cart-wrapper a {
+		display: flex;
+		align-items: center;
+		text-decoration: none; /* Loại bỏ gạch chân */
+		color: black; /* Đảm bảo màu chữ */
+		white-space: nowrap; /* Ngăn chữ xuống dòng */
+			gap: 5px; /* Tạo khoảng cách giữa ảnh và chữ */
+	}
+
+	.cart-icon {
+		margin-right: 5px; /* Tạo khoảng cách giữa ảnh và chữ */
+	}
+
+	.jbrHBQ {
+		color: rgb(255, 255, 255);
+		background: rgb(255, 66, 79);
+		height: 16px;
+		right: 0px;
+		top: -4px;
+		border-radius: 8px;
+		display: inline-block;
+		text-align: center;
+		font-weight: 700;
+		font-size: 10px;
+		line-height: 150%;
+		position: absolute;
+		padding: 0.5px 4px;
+	}
+</style>
+<div class="cart-wrapper">
+	<a class="text-dark" href="@Url.Action("Index", "Cart")">
+		<img class="cart-icon"
+			 src="~/LVComputer/cart.png"
+			 alt="No Image"
+			 width="25px" height="25px">
+	</a>
+	@if (@ViewBag.TotalQuantity > 0)
+	{
+		<span class="jbrHBQ">@ViewBag.TotalQuantity</span>
+	}
+</div>

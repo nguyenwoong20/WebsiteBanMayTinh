@@ -1,0 +1,35 @@
+﻿@model Website_BanMayTinh.Models.Brand
+
+@{
+    ViewData["Title"] = "Xóa thương hiệu";
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow">
+        <div class="card-header bg-danger text-white">
+            <h4 class="mb-0"><i class="bi bi-exclamation-triangle"></i> Xác nhận xóa thương hiệu</h4>
+        </div>
+        <div class="card-body">
+            <p class="text-danger fw-bold">Bạn có chắc chắn muốn xóa thương hiệu này không?</p>
+
+            <dl class="row">
+                <dt class="col-sm-3">Tên thương hiệu:</dt>
+                <dd class="col-sm-9">@Html.DisplayFor(model => model.Name)</dd>
+            </dl>
+
+            <form asp-action="Delete">
+                <input type="hidden" asp-for="Id" />
+
+                <div class="d-flex justify-content-between">
+                    <button type="submit" class="btn btn-danger">
+                        <i class="bi bi-trash"></i> Xóa
+                    </button>
+                    <a asp-action="Index" class="btn btn-secondary">
+                        <i class="bi bi-arrow-left"></i> Quay lại
+                    </a>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>

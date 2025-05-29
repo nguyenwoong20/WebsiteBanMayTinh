@@ -1,0 +1,76 @@
+﻿@model X.PagedList.IPagedList<Website_BanMayTinh.Models.Product>
+@using X.PagedList.Mvc.Core;
+
+@{
+    ViewData["Title"] = "Quản lý sản phẩm nổi bật";
+    Layout = "~/Views/Shared/_MyLayout.cshtml"; // hoặc Layout riêng cho Admin nếu có
+}
+
+<h2 class="mt-4 mb-3 text-center">🌟 Quản lý sản phẩm nổi bật</h2>
+<form method="get" asp-action="Index" class="mb-3 d-flex">
+    <input type="text" name="searchString" value="@ViewBag.CurrentFilter" class="form-control me-2" placeholder="Tìm sản phẩm...">
+    <button type="submit" class="btn btn-primary"><i class="fas fa-search"></i> Tìm</button>
+</form>
+<table class="table table-bordered table-hover">
+    <thead class="table-warning text-center">
+        <tr>
+			<th>ID</th>
+            <th>Hình ảnh</th>
+            <th>Tên sản phẩm</th>
+            <th>Giá</th>
+            <th>Danh mục</th>
+            <th>Nổi bật?</th>
+            <th>Hành động</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr class="align-middle text-center">
+                <td>@item.Id</td>
+                <td>
+                    <img src="@item.ImageUrl" alt="@item.Name" width="100" style="object-fit: contain;" />
+                </td>
+                <td>@item.Name</td>
+                <td>@item.Price.ToString("N0") ₫</td>
+                <td>@item.Category?.Name</td>
+                <td>
+                    @if (item.IsFeatured)
+                    {
+                        <span class="badge bg-success">✔ Có</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-secondary">✖ Không</span>
+                    }
+                </td>
+                <td>
+                    <form asp-action="ToggleFeatured" asp-controller="Featured" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <input type="hidden" name="searchString" value="@ViewBag.CurrentFilter" />
+                        <input type="hidden" name="page" value="@Model.PageNumber" />
+                        <button type="submit" class="btn btn-sm @(item.IsFeatured ? "btn-warning" : "btn-outline-secondary")">
+                            @(item.IsFeatured ? "Bỏ nổi bật" : "Đánh dấu nổi bật")
+                        </button>
+                    </form>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+<div class="d-flex justify-content-center mt-4">
+    @Html.PagedListPager(Model, page => Url.Action("Index", "Featured", new { area = "Admin", page, searchString = ViewBag.CurrentFilter }),
+            new PagedListRenderOptions
+    {
+        LiElementClasses = new[] { "page-item" },
+        PageClasses = new[] { "page-link" },
+        UlElementClasses = new[] { "pagination" }
+    })
+</div>
+
+
+<style>
+    form.d-flex input[type="text"] {
+        max-width: 300px;
+    }
+</style>

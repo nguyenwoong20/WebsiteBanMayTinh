@@ -40,10 +40,10 @@
             <form asp-action="Delete" method="post">
                 <input type="hidden" asp-for="Id" />
                 <div class="d-flex justify-content-center mt-3">
-                    <button type="submit" class="btn btn-danger me-2">
+                    <button type="submit" class="btn btn-danger me-2" asp-route-pageNumber="@ViewBag.CurrentPage">
                         <i class="bi bi-trash"></i> Xóa
                     </button>
-                    <a asp-action="Index" class="btn btn-secondary">
+                    <a asp-action="Index" class="btn btn-secondary" asp-route-pageNumber="@ViewBag.CurrentPage">
                         <i class="bi bi-arrow-left"></i> Quay lại
                     </a>
                 </div>

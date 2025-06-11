@@ -20,7 +20,7 @@
         <div class="card-body">
             <p><strong><i class="fas fa-user"></i> Tên:</strong> @Model.User?.FullName</p>
             <p><strong><i class="fas fa-envelope"></i> Email:</strong> @Model.User?.Email</p>
-            <p><strong><i class="fas fa-phone"></i> Số điện thoại:</strong> @Model.Phone</p>
+            <p><strong><i class="fas fa-phone"></i> Số điện thoại:</strong> @Model.User?.PhoneNumber</p>
         </div>
     </div>
 
@@ -76,7 +76,7 @@
         </h4>
         @if (!Model.IsPay)
         {
-            <form asp-action="ConfirmPayment" asp-route-id="@Model.Id" method="post" class="d-inline">
+            <form asp-action="ConfirmPayment" asp-route-id="@Model.Id" asp-route-pageNumber="@ViewBag.CurrentPage" method="post" class="d-inline">
                 <button type="submit" class="btn btn-warning mt-2">
                     <i class="fas fa-money-check-alt"></i> Xác nhận đã thanh toán
                 </button>
@@ -93,7 +93,7 @@
 
     <!-- Nút quay lại -->
     <div class="text-center mt-3">
-        <a asp-action="Index" class="btn btn-primary">
+        <a asp-action="Index" class="btn btn-primary" asp-route-pageNumber="@ViewBag.CurrentPage">
             <i class="fas fa-arrow-left"></i> Quay lại danh sách
         </a>
     </div>

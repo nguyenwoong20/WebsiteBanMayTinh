@@ -1,0 +1,54 @@
+﻿@model Website_BanMayTinh.Models.ProfileViewModel
+@{
+    ViewData["Title"] = "Thông tin cá nhân";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container py-4">
+    <div class="row justify-content-center">
+        <div class="col-lg-8">
+            <div class="card border-0 shadow rounded-4 bg-dark text-light">
+                <div class="card-header bg-gradient text-white rounded-top-4" style="background: linear-gradient(90deg, #ffcc00, #e6b800);">
+                    <h4 class="mb-0"><i class="bi bi-person-circle me-2"></i>Thông tin cá nhân</h4>
+                </div>
+                <div class="card-body p-4">
+                    @if (ViewBag.Success != null)
+                    {
+                        <div class="alert alert-success"><i class="bi bi-check-circle-fill me-2"></i>@ViewBag.Success</div>
+                    }
+
+                    <form asp-action="Profile" method="post" class="needs-validation" novalidate>
+                        <div class="mb-3">
+                            <label asp-for="Email" class="form-label fw-semibold text-warning"></label>
+                            <input asp-for="Email" class="form-control bg-light text-dark" readonly />
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="FullName" class="form-label fw-semibold text-warning"></label>
+                            <input asp-for="FullName" class="form-control bg-light text-dark" />
+                            <span asp-validation-for="FullName" class="text-danger small"></span>
+                        </div>
+
+                        <div class="mb-3">
+                            <label asp-for="PhoneNumber" class="form-label fw-semibold text-warning"></label>
+                            <input asp-for="PhoneNumber" class="form-control bg-light text-dark" />
+                            <span asp-validation-for="PhoneNumber" class="text-danger small"></span>
+                        </div>
+
+                        <div class="text-end mt-4">
+                            <button type="submit" class="btn btn-warning fw-bold px-4 shadow">
+                                <i class="bi bi-save2 me-1"></i> Lưu thay đổi
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

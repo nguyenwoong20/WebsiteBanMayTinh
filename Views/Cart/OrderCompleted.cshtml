@@ -1,9 +1,6 @@
 ﻿@model int
-
-@{
-    ViewBag.Title = "Đặt hàng thành công";
-}
-
-<h2>Đặt hàng thành công!</h2>
-<p>Mã đơn hàng của bạn là: <b>@Model</b></p>
-<a asp-controller="Home" asp-action="Index" class="btn btn-primary">Về trang chủ</a>
+<div class="order-completed-container">
+    <h2>🎉 Đặt hàng thành công</h2>
+    <p>Đơn hàng của bạn với ID <span class="order-id">@Model</span> đã được đặt thành công.</p>
+    <a asp-action="Index" asp-controller="Home">Trở về trang chủ</a>
+</div>

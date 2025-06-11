@@ -9125,11 +9125,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "D:\\WebsiteBanMayTinh\\WebsiteBanMayTinh\\Website_BanMayTinh.csproj",
+      "projectUniqueName": "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\Website_BanMayTinh.csproj",
       "projectName": "Website_BanMayTinh",
-      "projectPath": "D:\\WebsiteBanMayTinh\\WebsiteBanMayTinh\\Website_BanMayTinh.csproj",
+      "projectPath": "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\Website_BanMayTinh.csproj",
       "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-      "outputPath": "D:\\WebsiteBanMayTinh\\WebsiteBanMayTinh\\obj\\",
+      "outputPath": "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"

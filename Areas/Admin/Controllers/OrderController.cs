@@ -50,7 +50,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             return View(pagedOrders);
         }
 
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int pageNumber = 1)
         {
             var order = await _context.Orders
                 .Include(o => o.User)
@@ -63,10 +63,12 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewBag.CurrentPage = pageNumber;
+
             return View(order);
         }
 
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int pageNumber = 1)
         {
             if (id == null)
             {
@@ -80,13 +82,14 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewBag.CurrentPage = pageNumber;
 
             return View(order);
         }
 
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, int pageNumber = 1)
         {
             var order = await _context.Orders.FindAsync(id);
             if (order != null)
@@ -95,11 +98,11 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new {pageNumber = pageNumber});
         }
 
         [HttpPost]
-        public IActionResult ConfirmPayment(int id)
+        public IActionResult ConfirmPayment(int id, int pageNumber = 1)
         {
             var order = _context.Orders.FirstOrDefault(o => o.Id == id);
             if (order == null)
@@ -111,7 +114,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             _context.SaveChanges();
 
             TempData["Message"] = $"Đơn hàng #{id} đã được xác nhận thanh toán.";
-            return RedirectToAction("Index");
+            return RedirectToAction("Index", new {pageNumber = pageNumber});
         }
     }
 }

@@ -5,7 +5,6 @@ namespace Website_BanMayTinh.Models
 {
     public class Order
     {
-
         public int Id { get; set; }
         public DateTime OrderDate { get; set; } = DateTime.Now;
         public List<OrderDetail> OrderDetails { get; set; } = new();
@@ -19,8 +18,5 @@ namespace Website_BanMayTinh.Models
         public ApplicationUser User { get; set; } = null!;
 
         public bool IsPay { get; set; } = false;
-
-        public string Phone { get; set; }
-
     }
 }

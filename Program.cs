@@ -1,4 +1,4 @@
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
 using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Website_BanMayTinh.Models;
@@ -34,6 +34,11 @@ builder.Services.AddSession(options =>
     options.Cookie.IsEssential = true;
 });
 
+builder.Services.Configure<SecurityStampValidatorOptions>(options =>
+{
+    options.ValidationInterval = TimeSpan.Zero; // Luôn kiểm tra lại mỗi request
+});
+
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
@@ -50,7 +55,7 @@ if (!app.Environment.IsDevelopment())
 app.UseRouting();
 app.UseSession();
 
-
+app.UseAuthentication();
 app.UseAuthorization();
 
 app.MapStaticAssets();

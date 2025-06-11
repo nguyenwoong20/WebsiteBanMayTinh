@@ -20,21 +20,23 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             _productRepository = productRepository;
         }
 
+
         // GET: Products
         public async Task<IActionResult> Index(int? categoryId, int page = 1, int pageSize = 8)
         {
-            var query = _context.Products.AsQueryable();
+            var query = _context.Products
+                .AsQueryable();
 
             if (categoryId.HasValue)
             {
                 query = query.Where(p => p.CategoryId == categoryId)
-                             .Include(p => p.Category)
-                             .Include(p => p.Brand);
+                    .Include(p => p.Category)
+                    .Include(p => p.Brand);
             }
             else
             {
                 query = query.Include(p => p.Category)
-                             .Include(p => p.Brand);
+                    .Include(p => p.Brand);
             }
 
             var totalItems = await query.CountAsync();
@@ -55,7 +57,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         }
 
         // GET: Products/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -63,14 +65,13 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             }
 
             var product = await _context.Products
-                .Include(p => p.Category)
-                .Include(p => p.Brand)
+                .Include(p => p.Category).Include(p => p.Brand)
                 .FirstOrDefaultAsync(m => m.Id == id);
-
             if (product == null)
             {
                 return NotFound();
             }
+            ViewBag.CurrentPage = page;
 
             return View(product);
         }
@@ -84,6 +85,8 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         }
 
         // POST: Products/Create
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create(Product product, IFormFile ImageFile)
@@ -92,17 +95,24 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             {
                 if (ImageFile != null && ImageFile.Length > 0)
                 {
+                    // Đường dẫn thư mục wwwroot/images
                     var uploadsFolder = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot/images");
+
+                    // Tạo tên file duy nhất
                     var uniqueFileName = Guid.NewGuid().ToString() + Path.GetExtension(ImageFile.FileName);
                     var filePath = Path.Combine(uploadsFolder, uniqueFileName);
+
+                    // Tạo thư mục nếu chưa tồn tại
                     if (!Directory.Exists(uploadsFolder))
                         Directory.CreateDirectory(uploadsFolder);
 
+                    // Lưu file vào wwwroot/images
                     using (var stream = new FileStream(filePath, FileMode.Create))
                     {
                         await ImageFile.CopyToAsync(stream);
                     }
 
+                    // Gán đường dẫn ảnh vào Product
                     product.ImageUrl = "/images/" + uniqueFileName;
                 }
 
@@ -117,7 +127,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         }
 
         // GET: Products/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -130,16 +140,20 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            // Tạo danh sách chọn cho Category và Brand
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", product.BrandId);
-
+            ViewBag.CurrentPage = page;
             return View(product);
         }
 
+
         // POST: Products/Edit/5
+        // To protect from overposting attacks, enable the specific properties you want to bind to.
+        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, Product product, IFormFile? ImageFile)
+        public async Task<IActionResult> Edit(int id, Product product, IFormFile? ImageFile, int page = 1)
         {
             if (id != product.Id)
             {
@@ -172,7 +186,6 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                     existingProduct.Description = product.Description;
                     existingProduct.CategoryId = product.CategoryId;
                     existingProduct.BrandId = product.BrandId;
-                    existingProduct.Stock = product.Stock; // <-- ĐẢM BẢO DÒNG NÀY LUÔN CÓ
 
                     // Xử lý ảnh (nếu có)
                     if (ImageFile != null && ImageFile.Length > 0)
@@ -204,7 +217,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
 
                     _context.Update(existingProduct);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index));
+                    return RedirectToAction(nameof(Index), new {page = page});
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -221,11 +234,14 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
 
             ViewData["CategoryId"] = new SelectList(_context.Categories, "Id", "Name", product.CategoryId);
             ViewData["BrandId"] = new SelectList(_context.Brands, "Id", "Name", product.BrandId);
+            ViewBag.CurrentPage = page;
             return View(product);
         }
 
+
+
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id , int page = 1)
         {
             if (id == null)
             {
@@ -239,6 +255,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+            ViewBag.CurrentPage = page;
 
             return View(product);
         }
@@ -246,7 +263,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         // POST: Products/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, int page = 1)
         {
             var product = await _context.Products.FindAsync(id);
             if (product != null)
@@ -255,7 +272,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { page = page });
         }
 
         private bool ProductExists(int id)
@@ -277,8 +294,8 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                     p.Id.ToString().Contains(searchString) ||
                     p.Name.Contains(searchString) ||
                     p.Description.Contains(searchString) ||
-                    p.Brand.Name.Contains(searchString) ||
-                    p.Category.Name.Contains(searchString)
+                    p.Brand.Name.Contains(searchString) ||  // Tìm theo thương hiệu
+                    p.Category.Name.Contains(searchString) // Tìm theo loại sản phẩm
                 );
             }
 
@@ -286,5 +303,6 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
 
             return View("Index", await products.ToListAsync());
         }
+
     }
 }

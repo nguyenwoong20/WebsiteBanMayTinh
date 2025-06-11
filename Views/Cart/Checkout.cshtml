@@ -5,14 +5,9 @@
 
     <div class="card shadow-sm p-4">
         <form asp-action="Checkout" method="post">
-            @Html.AntiForgeryToken()
             <div class="mb-3">
                 <label asp-for="ShippingAddress" class="form-label">Địa chỉ giao hàng</label>
                 <input asp-for="ShippingAddress" class="form-control" placeholder="Nhập địa chỉ của bạn..." />
-            </div>
-            <div class="mb-3">
-                <label asp-for="Phone" class="form-label">Số điện thoại</label>
-                <input asp-for="Phone" class="form-control" placeholder="Nhập số điện thoại..." />
             </div>
             <div class="mb-3">
                 <label asp-for="Notes" class="form-label">Ghi chú</label>

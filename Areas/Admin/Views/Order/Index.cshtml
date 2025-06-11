@@ -68,18 +68,18 @@
                     }
                 </td>
                 <td>
-                    <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">
+                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-pageNumber="@ViewBag.CurrentPage" class="btn btn-sm btn-info">
                         <i class="bi bi-eye"></i> Xem
                     </a>
                     @if (!item.IsPay)
                     {
-                        <form asp-action="ConfirmPayment" asp-route-id="@item.Id" method="post" class="d-inline">
+                        <form asp-action="ConfirmPayment" asp-route-id="@item.Id" asp-route-pageNumber="@ViewBag.CurrentPage" method="post" class="d-inline">
                             <button type="submit" class="btn btn-sm btn-warning">
                                 <i class="bi bi-cash"></i> Xác nhận thanh toán
                             </button>
                         </form>
                     }
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">
+                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" asp-route-pageNumber="@ViewBag.CurrentPage">
                         <i class="bi bi-trash"></i> Xóa
                     </a>
                 </td>

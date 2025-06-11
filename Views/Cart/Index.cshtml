@@ -1,54 +1,58 @@
-﻿
+﻿@model List<Website_BanMayTinh.Models.CartItem>
 @{
-    ViewData["Title"] = "Index";
-    Layout = "~/Views/Shared/_Layout.cshtml";
+    ViewBag.Title = "Giỏ hàng";
 }
 
-<h2>Giỏ hàng của bạn</h2>
-@if (Model.Count == 0)
+@if (TempData["Error"] != null)
 {
-	<p>Giỏ hàng của bạn đang trống.</p>
+    <div class="alert alert-danger">@TempData["Error"]</div>
+}
+@if (TempData["Success"] != null)
+{
+    <div class="alert alert-success">@TempData["Success"]</div>
+}
+
+@if (!Model.Any())
+{
+    <div>Giỏ hàng trống.</div>
 }
 else
 {
-	<p>Bạn có @Model.Count sản phẩm trong giỏ hàng.</p>
-}
-
-<div class="d-flex justify-content-end mb-3">
-    <a asp-controller="Orders" asp-action="MyOrders" class="btn btn-primary">🛒 Xem đơn hàng đã đặt</a>
-</div>
-<table class="table">
-    <thead>
+    <table class="table">
         <tr>
-            <th>Sản phẩm</th>
-            <th>Giá</th>
+            <th>Tên sản phẩm</th>
+            <th>Đơn giá (VNĐ)</th>
             <th>Số lượng</th>
-            <th>Thành tiền</th>
+            <th>Tổng (VNĐ)</th>
             <th></th>
         </tr>
-    </thead>
-    <tbody>
         @foreach (var item in Model)
         {
             <tr>
                 <td>@item.Name</td>
-                <td>@item.Price.ToString("N0") đ</td>
+                <td>@item.Price.ToString("N0")</td>
                 <td>
-                    <form asp-action="UpdateQuantity" method="post" class="d-flex">
+                    <form asp-action="UpdateQuantity" method="post" style="display:inline;">
                         <input type="hidden" name="productId" value="@item.Id" />
-                        <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control me-2" style="width: 80px;" />
-                        <button type="submit" class="btn btn-outline-primary btn-sm">Cập nhật</button>
+                        <input type="number" name="quantity" value="@item.Quantity" min="1" style="width:60px;" />
+                        <button type="submit" class="btn btn-sm btn-primary">Cập nhật</button>
                     </form>
                 </td>
-                <td>@(item.Price * item.Quantity) đ</td>
+                <td>@(item.Price* item.Quantity).ToString("N0")</td>
                 <td>
-                    <a asp-action="Remove" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
+                    <form asp-action="Remove" method="post" style="display:inline;">
+                        <input type="hidden" name="id" value="@item.Id" />
+                        <button type="submit" class="btn btn-sm btn-danger">Xóa</button>
+                    </form>
                 </td>
             </tr>
         }
-    </tbody>
-</table>
-<h4 class="text-end">Tổng tiền: <strong>@ViewBag.Total đ</strong></h4>
-<a asp-action="Clear" class="btn btn-warning">Xóa tất cả</a>
-<a asp-controller="Cart" asp-action="Checkout" class="btn btn-success">Đặt hàng</a>
-
+    </table>
+    <div class="text-end">
+        <strong>Tổng tiền: @Model.Sum(i => i.Price * i.Quantity).ToString("N0") VNĐ</strong>
+    </div>
+    <hr />
+    <form asp-action="Checkout" method="get">
+        <button type="submit" class="btn btn-success">Thanh toán</button>
+    </form>
+}

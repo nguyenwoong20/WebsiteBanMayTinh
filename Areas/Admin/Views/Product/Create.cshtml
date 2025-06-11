@@ -31,6 +31,14 @@
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
+                <!-- Trường số lượng tồn kho -->
+                <div class="mb-3">
+                    <label asp-for="Stock" class="form-label fw-bold">Số lượng tồn kho</label>
+                    <input asp-for="Stock" class="form-control" type="number" min="0" placeholder="Nhập số lượng tồn kho..." />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+                <!-- Kết thúc trường tồn kho -->
+
                 <div class="mb-3">
                     <label asp-for="Description" class="form-label fw-bold">Mô tả</label>
                     <textarea asp-for="Description" class="form-control" rows="3" placeholder="Mô tả sản phẩm..."></textarea>

@@ -33,6 +33,14 @@
                     <span asp-validation-for="Price" class="text-danger"></span>
                 </div>
 
+                <!-- Trường số lượng tồn kho -->
+                <div class="mb-3">
+                    <label asp-for="Stock" class="form-label fw-bold">Số lượng tồn kho</label>
+                    <input asp-for="Stock" class="form-control" type="number" min="0" />
+                    <span asp-validation-for="Stock" class="text-danger"></span>
+                </div>
+                <!-- Kết thúc trường tồn kho -->
+
                 <div class="mb-3">
                     <label asp-for="Description" class="form-label fw-bold">Mô tả</label>
                     <textarea asp-for="Description" class="form-control" rows="3"></textarea>
@@ -79,15 +87,6 @@
                 };
                 reader.readAsDataURL(file);
             }
-        });
-
-        document.querySelector("form").addEventListener("submit", function () {
-            console.log("Giá trị gửi đi:");
-            console.log("Tên sản phẩm:", document.querySelector("#Name").value);
-            console.log("Giá:", document.querySelector("#Price").value);
-            console.log("Mô tả:", document.querySelector("#Description").value);
-            console.log("Danh mục:", document.querySelector("#CategoryId").value);
-            console.log("Thương hiệu:", document.querySelector("#BrandId").value);
         });
     </script>
 }

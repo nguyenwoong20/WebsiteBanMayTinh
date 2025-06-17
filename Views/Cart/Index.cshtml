@@ -43,12 +43,21 @@ else
                 <td>@item.Name</td>
                 <td>@item.Price.ToString("N0") đ</td>
                 <td>
-                    <form asp-action="UpdateQuantity" method="post" class="d-flex">
+                    <form asp-action="UpdateQuantity" method="post" class="d-flex align-items-center">
                         <input type="hidden" name="productId" value="@item.Id" />
-                        <input type="number" name="quantity" value="@item.Quantity" min="1" class="form-control me-2" style="width: 80px;" />
-                        <button type="submit" class="btn btn-outline-primary btn-sm">Cập nhật</button>
+                        @Html.AntiForgeryToken()
+
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="adjustQuantity(this, -1)">-</button>
+
+                        <input type="number" name="quantity" value="@item.Quantity" min="1"
+                               class="form-control text-center mx-1"
+                               style="width: 80px;"
+                               onchange="this.form.submit()" />
+
+                        <button type="button" class="btn btn-outline-secondary btn-sm" onclick="adjustQuantity(this, 1)">+</button>
                     </form>
                 </td>
+
                 <td>@(item.Price * item.Quantity) đ</td>
                 <td>
                     <a asp-action="Remove" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
@@ -60,4 +69,22 @@ else
 <h4 class="text-end">Tổng tiền: <strong>@ViewBag.Total đ</strong></h4>
 <a asp-action="Clear" class="btn btn-warning">Xóa tất cả</a>
 <a asp-controller="Cart" asp-action="Checkout" class="btn btn-success">Đặt hàng</a>
+
+@section Scripts {
+    <script>
+        function adjustQuantity(button, delta) {
+            const form = button.closest('form');
+            const input = form.querySelector('input[name="quantity"]');
+            let value = parseInt(input.value);
+            if (isNaN(value)) value = 1;
+
+            const newValue = value + delta;
+            if (newValue < 1) return;
+
+            input.value = newValue;
+            form.submit();
+        }
+    </script>
+}
+
 

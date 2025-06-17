@@ -20,6 +20,6 @@ namespace Website_BanMayTinh.Models
         public Brand? Brand { get; set; }
         public bool IsFeatured { get; set; }
 
-        public int Stock { get; set; }
+        public int Stock { get; set; } = 1;
     }
 }

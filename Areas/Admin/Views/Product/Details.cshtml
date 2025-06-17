@@ -18,10 +18,6 @@
                 <dt class="col-sm-3 fw-bold text-muted">Giá (VNĐ):</dt>
                 <dd class="col-sm-9 text-danger">@string.Format("{0:N0}", Model.Price)</dd>
 
-                <!-- Thêm dòng này để hiển thị tồn kho -->
-                <dt class="col-sm-3 fw-bold text-muted">Tồn kho:</dt>
-                <dd class="col-sm-9">@Model.Stock</dd>
-
                 <dt class="col-sm-3 fw-bold text-muted">Mô tả:</dt>
                 <dd class="col-sm-9">@Model.Description</dd>
 
@@ -38,10 +34,10 @@
             </dl>
         </div>
         <div class="card-footer text-end">
-            <a asp-action="Edit" asp-route-id="@Model.Id" class="btn btn-warning me-2">
+            <a asp-action="Edit" asp-route-id="@Model.Id" asp-route-page="@ViewBag.CurrentPage" class="btn btn-warning me-2">
                 <i class="bi bi-pencil-square"></i> Sửa
             </a>
-            <a asp-action="Index" class="btn btn-secondary">
+            <a asp-action="Index" asp-route-page="@ViewBag.CurrentPage" class="btn btn-secondary">
                 <i class="bi bi-arrow-left"></i> Quay lại
             </a>
         </div>

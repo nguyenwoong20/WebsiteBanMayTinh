@@ -183,6 +183,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                     // Cập nhật thông tin sản phẩm
                     existingProduct.Name = product.Name;
                     existingProduct.Price = product.Price;
+                    existingProduct.Stock = product.Stock;
                     existingProduct.Description = product.Description;
                     existingProduct.CategoryId = product.CategoryId;
                     existingProduct.BrandId = product.BrandId;
@@ -217,7 +218,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
 
                     _context.Update(existingProduct);
                     await _context.SaveChangesAsync();
-                    return RedirectToAction(nameof(Index), new {page = page});
+                    return RedirectToAction(nameof(Index), new { page = page });
                 }
                 catch (DbUpdateConcurrencyException)
                 {
@@ -241,7 +242,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
 
 
         // GET: Products/Delete/5
-        public async Task<IActionResult> Delete(int? id , int page = 1)
+        public async Task<IActionResult> Delete(int? id, int page = 1)
         {
             if (id == null)
             {

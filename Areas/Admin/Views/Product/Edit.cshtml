@@ -12,6 +12,7 @@
         </div>
         <div class="card-body">
             <form asp-action="Edit" method="post" enctype="multipart/form-data">
+                <input type="hidden" name="page" value="@ViewBag.CurrentPage" />
                 <div asp-validation-summary="ModelOnly" class="alert alert-danger"></div>
                 <input type="hidden" asp-for="Id" />
 
@@ -63,7 +64,7 @@
                     <button type="submit" class="btn btn-success">
                         <i class="bi bi-save"></i> Lưu thay đổi
                     </button>
-                    <a asp-action="Index" class="btn btn-secondary">
+                    <a asp-action="Index" class="btn btn-secondary" asp-route-page="@ViewBag.CurrentPage">
                         <i class="bi bi-arrow-left"></i> Quay lại
                     </a>
                 </div>

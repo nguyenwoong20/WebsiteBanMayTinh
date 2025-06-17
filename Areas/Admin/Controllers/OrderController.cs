@@ -34,7 +34,8 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             int totalOrders = await orders.CountAsync();
             int totalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
 
-            if (currentPage > totalPages) currentPage = totalPages; // Ngăn nhập trang quá lớn
+            if (currentPage < 1) currentPage = 1; // ✅ Không cho nhỏ hơn 1
+            if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
 
             var pagedOrders = await orders
                 .OrderByDescending(o => o.OrderDate)
@@ -98,7 +99,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index), new {pageNumber = pageNumber});
+            return RedirectToAction(nameof(Index), new {pageNumber = pageNumber});      
         }
 
         [HttpPost]

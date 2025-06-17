@@ -1,23 +1,23 @@
 {
   "format": 1,
   "restore": {
-    "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\Website_BanMayTinh.csproj": {}
+    "D:\\My_Workspace\\CNPM\\DoAn_Clone\\WebsiteBanMayTinh\\Website_BanMayTinh.csproj": {}
   },
   "projects": {
-    "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\Website_BanMayTinh.csproj": {
+    "D:\\My_Workspace\\CNPM\\DoAn_Clone\\WebsiteBanMayTinh\\Website_BanMayTinh.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\Website_BanMayTinh.csproj",
+        "projectUniqueName": "D:\\My_Workspace\\CNPM\\DoAn_Clone\\WebsiteBanMayTinh\\Website_BanMayTinh.csproj",
         "projectName": "Website_BanMayTinh",
-        "projectPath": "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\Website_BanMayTinh.csproj",
-        "packagesPath": "C:\\Users\\LENOVO\\.nuget\\packages\\",
-        "outputPath": "D:\\WebsiteBanMayTinh\\Website_BanMayTinh\\obj\\",
+        "projectPath": "D:\\My_Workspace\\CNPM\\DoAn_Clone\\WebsiteBanMayTinh\\Website_BanMayTinh.csproj",
+        "packagesPath": "C:\\Users\\Admin\\.nuget\\packages\\",
+        "outputPath": "D:\\My_Workspace\\CNPM\\DoAn_Clone\\WebsiteBanMayTinh\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
         ],
         "configFilePaths": [
-          "C:\\Users\\LENOVO\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Users\\Admin\\AppData\\Roaming\\NuGet\\NuGet.Config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
           "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
         ],

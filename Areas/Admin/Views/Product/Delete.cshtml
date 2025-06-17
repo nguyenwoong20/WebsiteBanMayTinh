@@ -37,12 +37,13 @@
             </dl>
 
             <form asp-action="Delete">
+                <input type="hidden" name="page" value="@ViewBag.CurrentPage" />
                 <input type="hidden" asp-for="Id" />
                 <div class="d-flex justify-content-start gap-2">
                     <button type="submit" class="btn btn-danger">
                         <i class="bi bi-trash-fill"></i> Xóa ngay
                     </button>
-                    <a asp-action="Index" class="btn btn-secondary">
+                    <a asp-action="Index" class="btn btn-secondary" asp-route-page="@ViewBag.CurrentPage">
                         <i class="bi bi-arrow-left"></i> Quay lại danh sách
                     </a>
                 </div>

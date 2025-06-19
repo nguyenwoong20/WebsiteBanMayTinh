@@ -1,10 +1,9 @@
-﻿using Microsoft.AspNetCore.Identity;
-using Microsoft.EntityFrameworkCore;
+﻿using Microsoft.EntityFrameworkCore;
 using OfficeOpenXml;
+using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
 using Website_BanMayTinh.Models;
 using Website_BanMayTinh.Repositories;
-using Website_BanMayTinh.Services;
-using static Microsoft.EntityFrameworkCore.DbLoggerCategory.Database;
+using Microsoft.AspNetCore.Identity;
 
 var builder = WebApplication.CreateBuilder(args);
 //Add Database
@@ -26,7 +25,6 @@ builder.Services.AddRazorPages();
 
 builder.Services.AddScoped<CategoryRepository>();
 builder.Services.AddScoped<ProductRepository>();
-builder.Services.AddScoped<OpenAiService>();
 
 builder.Services.AddDistributedMemoryCache();
 builder.Services.AddSession(options =>

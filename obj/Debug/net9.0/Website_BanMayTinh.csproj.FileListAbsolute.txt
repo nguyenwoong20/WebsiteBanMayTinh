@@ -1305,7 +1305,6 @@ D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\ah
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\o9wq5zhmdj-e9qf5exhbo.gz
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\vlyo3rkpzs-kbptplgte6.gz
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\vryanxihcq-61n19gt1b8.gz
-D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\wpjtxe3mg5-0zmss1tlrv.gz
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\67y6v4l7w7-9q3dppz04a.gz
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\tkl53s4nlp-xtxxf3hu2r.gz
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\8ndgcnig7k-t1cqhe9u97.gz
@@ -1380,3 +1379,4 @@ D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\refint\Websit
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\Website_BanMayTinh.pdb
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\Website_BanMayTinh.genruntimeconfig.cache
 D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\ref\Website_BanMayTinh.dll
+D:\My_Workspace\CNPM\DoAn_Clone\WebsiteBanMayTinh\obj\Debug\net9.0\compressed\wpjtxe3mg5-b58uuvrzl4.gz

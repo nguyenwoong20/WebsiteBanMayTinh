@@ -1,0 +1,222 @@
+﻿<div id="chatbot-toggle" onclick="toggleChat()" title="Chat với AI">💬</div>
+
+<div id="chatbot-box" class="chatbot-hidden">
+
+    <div id="chatWelcome" class="p-2"></div>
+
+    <div id="chatContainer" class="chat-body"></div>
+
+    <div id="chatSuggestions" class="p-2 border-bottom">
+        <div class="suggestion" onclick="sendSuggestedMessage('Tôi cần tư vấn cấu hình máy tính theo nhu cầu.')">💡 Tư vấn theo nhu cầu</div>
+        <div class="suggestion" onclick="sendSuggestedMessage('Tôi muốn gợi ý máy tính theo mức giá tôi có.')">🧩 Theo ngân sách</div>
+        <div class="suggestion" onclick="sendSuggestedMessage('Tôi không biết chọn cấu hình như thế nào, hãy gợi ý giúp tôi.')">🎯 Không rành cấu hình</div>
+    </div>
+
+    <div class="chat-input-area">
+        <input type="text" id="userInput" placeholder="Nhập câu hỏi..." onkeydown="if(event.key==='Enter') sendMessage()" />
+        <button onclick="sendMessage()">Gửi</button>
+    </div>
+</div>
+
+<style>
+    #chatbot-toggle {
+        position: fixed;
+        bottom: 20px;
+        right: 20px;
+        background: #007bff;
+        color: white;
+        padding: 12px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 20px;
+        z-index: 9999;
+    }
+
+    #chatbot-box {
+        position: fixed;
+        bottom: 80px;
+        right: 20px;
+        width: 400px;
+        height: 500px;
+        background: white;
+        border: 1px solid #ccc;
+        border-radius: 10px;
+        display: none;
+        flex-direction: column;
+        z-index: 9999;
+        box-shadow: 0 0 10px rgba(0,0,0,0.3);
+    }
+
+    .chat-body {
+        flex: 1;
+        padding: 10px;
+        overflow-y: auto;
+        background: #f5f5f5;
+    }
+
+    .chat-input-area {
+        padding: 10px;
+        border-top: 1px solid #ccc;
+        display: flex;
+    }
+
+        .chat-input-area input {
+            flex: 1;
+            padding: 5px;
+            margin-right: 5px;
+        }
+
+    .chat-bubble {
+        max-width: 80%;
+        margin-bottom: 10px;
+        padding: 8px 12px;
+        border-radius: 15px;
+        clear: both;
+    }
+
+    .user-message {
+        background-color: #007bff;
+        color: white;
+        float: right;
+        border-bottom-right-radius: 0;
+    }
+
+    .bot-message {
+        background-color: #e4e6eb;
+        float: left;
+        border-bottom-left-radius: 0;
+    }
+
+    .suggestion {
+        background: #f0f0f0;
+        padding: 6px 12px;
+        margin-bottom: 5px;
+        border-radius: 15px;
+        cursor: pointer;
+        display: inline-block;
+        margin-right: 5px;
+        font-size: 14px;
+    }
+
+        .suggestion:hover {
+            background: #d4eaff;
+        }
+</style>
+
+<script>
+    let chatVisible = false;
+    let hasWelcomed = false;
+
+    function toggleChat() {
+        chatVisible = !chatVisible;
+        const box = document.getElementById('chatbot-box');
+        box.style.display = chatVisible ? 'flex' : 'none';
+
+        if (chatVisible) {
+            loadHistory(); // 🆕 Tải lại lịch sử từ session
+        }
+    }
+
+    async function sendMessage() {
+        const input = document.getElementById("userInput");
+        const chatBox = document.getElementById("chatContainer");
+        const message = input.value.trim();
+        if (!message) return;
+
+        const suggestionBox = document.getElementById("chatSuggestions");
+        if (suggestionBox && suggestionBox.style.display !== "none") {
+            suggestionBox.style.display = "none";
+        }
+
+        chatBox.innerHTML += `<div class="chat-bubble user-message">${message}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+        input.value = "";
+
+        // Dòng xử lý
+        const waitingId = "waiting-msg-" + Date.now();
+        chatBox.innerHTML += `<div id="${waitingId}" class="chat-bubble bot-message">🤖 Đang xử lý... Vui lòng đợi...</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        const res = await fetch('/api/chatbot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(message)
+        });
+
+        const data = await res.json();
+
+        // Cập nhật dòng chờ thành phản hồi thật
+        const waitingBubble = document.getElementById(waitingId);
+        if (waitingBubble) {
+            waitingBubble.innerHTML = data.reply.replace(/\n/g, "<br>");
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+
+    async function loadHistory() {
+        const chatBox = document.getElementById("chatContainer");
+        chatBox.innerHTML = "";
+
+        try {
+            const res = await fetch('/api/chatbot/history');
+
+            if (!res.ok) {
+                throw new Error("Lỗi server khi tải lịch sử");
+            }
+
+            const history = await res.json();
+
+            if (history.length === 0) {
+                chatBox.innerHTML += `<div class="chat-bubble bot-message">👋 Xin chào! Tôi là trợ lý AI của LV Computer. Bạn muốn tư vấn cấu hình học tập, chơi game hay dựng video?</div>`;
+            }
+
+            history.forEach(msg => {
+                const cls = msg.role === "user" ? "user-message" : "bot-message";
+                chatBox.innerHTML += `<div class="chat-bubble ${cls}">${msg.message}</div>`;
+            });
+
+            chatBox.scrollTop = chatBox.scrollHeight;
+        } catch (err) {
+            chatBox.innerHTML = `<div class="chat-bubble bot-message">❌ Không thể tải lịch sử: ${err.message}</div>`;
+            console.error(err);
+        }
+    }
+
+
+    async function sendSuggestedMessage(text) {
+        const chatBox = document.getElementById("chatContainer");
+
+        // Ẩn phần gợi ý
+        const suggestionBox = document.getElementById("chatSuggestions");
+        if (suggestionBox) {
+            suggestionBox.style.display = "none";
+        }
+
+        // Hiện tin nhắn người dùng như thể họ gõ
+        chatBox.innerHTML += `<div class="chat-bubble user-message">${text}</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Hiện thông báo "Đang xử lý"
+        const waitingId = "waiting-suggest-" + Date.now();
+        chatBox.innerHTML += `<div id="${waitingId}" class="chat-bubble bot-message">🤖 Đang xử lý... Vui lòng đợi...</div>`;
+        chatBox.scrollTop = chatBox.scrollHeight;
+
+        // Gửi tới API
+        const res = await fetch('/api/chatbot', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify(text)
+        });
+
+        const data = await res.json();
+
+        // Cập nhật lại dòng phản hồi
+        const waitingBubble = document.getElementById(waitingId);
+        if (waitingBubble) {
+            waitingBubble.innerHTML = data.reply.replace(/\n/g, "<br>");
+        }
+
+        chatBox.scrollTop = chatBox.scrollHeight;
+    }
+</script>

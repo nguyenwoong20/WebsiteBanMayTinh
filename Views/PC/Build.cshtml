@@ -230,6 +230,14 @@
 														<a asp-action="Details" asp-controller="PC" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
 															Chi tiết
 														</a>
+														@if(item.Stock > 0)
+														{
+															<span class="stock-status">Còn hàng</span>
+														}
+														else
+														{
+															<span class="stock-status text-danger">Hết hàng</span>
+														}
 														<button type="button" class="btn btn-success btn-sm"
 																onclick="selectProduct('@part.Id', '@item.Id', '@Html.Raw(JavaScriptEncoder.Default.Encode(item.Name))', '@Html.Raw(JavaScriptEncoder.Default.Encode(item.ImageUrl))', '@item.Price.ToString("N0")')">
 															<i class="fas fa-plus-circle mr-1"></i> Chọn

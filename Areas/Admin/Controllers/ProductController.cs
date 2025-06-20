@@ -269,8 +269,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             var product = await _context.Products.FindAsync(id);
             if (product != null)
             {
-
-                // Kiểm tra nếu sản phẩm đã nằm trong bất kỳ đơn hàng nào
+                // ✅ Kiểm tra nếu sản phẩm đã nằm trong bất kỳ đơn hàng nào
                 bool isInOrder = await _context.OrderDetails.AnyAsync(od => od.ProductId == id);
 
                 if (isInOrder)
@@ -279,14 +278,13 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                     return RedirectToAction(nameof(Index), new { page = page });
                 }
 
-                // Nếu không có trong đơn hàng, xóa sản phẩm
+                // ❌ Nếu không có trong đơn hàng, xóa sản phẩm
                 _context.Products.Remove(product);
                 await _context.SaveChangesAsync();
 
                 TempData["Success"] = "Đã xóa sản phẩm thành công.";
             }
 
-            
             return RedirectToAction(nameof(Index), new { page = page });
         }
 

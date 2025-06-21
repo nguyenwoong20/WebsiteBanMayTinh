@@ -4,13 +4,12 @@ namespace Website_BanMayTinh.Models
 {
     public class Brand
     {
-        [Key]
         public int Id { get; set; }
 
-        [Required, StringLength(50)]
+        [Required]
+        [StringLength(50)] // Không nên để nvarchar(max)
         public string Name { get; set; }
 
-        // Một Brand có nhiều Product
         public List<Product>? Products { get; set; }
     }
 }

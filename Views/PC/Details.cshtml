@@ -92,9 +92,10 @@
     <p class="product-description">@Html.Raw(Model.Description.Replace("\n", "<br>"))</p>
 
 
-    <button type="button" class="btn btn-outline-primary" onclick="goBack()">
-        <i class="bi bi-arrow-left"></i> Quay lại
-    </button>
+    <a asp-action="Build" asp-controller="PC" asp-route-partId="@Context.Request.Query["partId"]"
+       class="btn btn-secondary">
+        ← Quay lại cấu hình
+    </a>
 
 </div>
 

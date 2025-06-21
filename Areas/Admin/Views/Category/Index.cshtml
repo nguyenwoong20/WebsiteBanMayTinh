@@ -35,13 +35,13 @@
                         <td class="fw-semibold">@Html.DisplayFor(modelItem => item.Name)</td>
                         <td style="align-items: center">
                             <div class="action-buttons" style="max-width: 50px">
-                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm">
+                                <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-warning btn-sm" asp-route-page="@ViewBag.CurrentPage">
                                     <i class="bi bi-pencil-square"></i> Sửa
                                 </a>
-                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white">
+                                <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-info btn-sm text-white" asp-route-page="@ViewBag.CurrentPage">
                                     <i class="bi bi-eye-fill"></i> Xem
                                 </a>
-                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm">
+                                <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-danger btn-sm" asp-route-page="@ViewBag.CurrentPage">
                                     <i class="bi bi-trash-fill"></i> Xóa
                                 </a>
                             </div>

@@ -17,13 +17,25 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         }
 
         // GET: Brands
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index(int page = 1, int pageSize = 5)
         {
-            return View(await _context.Brands.ToListAsync());
+            var totalItems = await _context.Brands.CountAsync();
+
+            var brands = await _context.Brands
+                .OrderBy(b => b.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+
+            return View(brands);
         }
 
         // GET: Brands/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -37,6 +49,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewBag.CurrentPage = page; // Lưu trang hiện tại để sử dụng sau khi xem chi tiết
             return View(brand);
         }
 
@@ -63,7 +76,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         }
 
         // GET: Brands/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -75,6 +88,8 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.CurrentPage = page; // Lưu trang hiện tại để sử dụng sau khi cập nhật
             return View(brand);
         }
 
@@ -83,7 +98,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Brand brand)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Brand brand, int page = 1)
         {
             if (id != brand.Id)
             {
@@ -108,13 +123,13 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new { page });
             }
             return View(brand);
         }
 
         // GET: Brands/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -128,13 +143,14 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewBag.CurrentPage = page; // Lưu trang hiện tại để sử dụng sau khi xóa
             return View(brand);
         }
 
         // POST: Brands/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, int page = 1)
         {
             var brand = await _context.Brands.FindAsync(id);
             if (brand != null)
@@ -143,7 +159,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new { page });
         }
 
         private bool BrandExists(int id)
@@ -151,7 +167,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             return _context.Brands.Any(e => e.Id == id);
         }
 
-        public async Task<IActionResult> Search(string searchString)
+        public async Task<IActionResult> Search(string searchString, int page = 1, int pageSize = 5)
         {
             var brands = _context.Brands.AsQueryable();
 
@@ -162,8 +178,20 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                     b.Name.Contains(searchString));
             }
 
-            return View("Index", await brands.ToListAsync());
-        }
+            var totalItems = await brands.CountAsync();
 
+            var pagedBrands = await brands
+                .OrderBy(b => b.Id)
+                .Skip((page - 1) * pageSize)
+                .Take(pageSize)
+                .ToListAsync();
+
+            ViewBag.CurrentPage = page;
+            ViewBag.PageSize = pageSize;
+            ViewBag.TotalPages = (int)Math.Ceiling((double)totalItems / pageSize);
+            ViewBag.SearchString = searchString;
+
+            return View("Index", pagedBrands);
+        }
     }
 }

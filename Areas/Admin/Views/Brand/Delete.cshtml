@@ -20,12 +20,13 @@
 
             <form asp-action="Delete">
                 <input type="hidden" asp-for="Id" />
+                <input type="hidden" name="page" value="@ViewBag.CurrentPage" />
 
                 <div class="d-flex justify-content-between">
                     <button type="submit" class="btn btn-danger">
                         <i class="bi bi-trash"></i> Xóa
                     </button>
-                    <a asp-action="Index" class="btn btn-secondary">
+                    <a asp-action="Index" class="btn btn-secondary" asp-route-page="@ViewBag.CurrentPage">
                         <i class="bi bi-arrow-left"></i> Quay lại
                     </a>
                 </div>

@@ -43,7 +43,7 @@
                     <td>@item.Product.Name</td>
                     <td>@item.Product.Price.ToString("N0") VNĐ</td>
                     <td>@item.Quantity</td>
-                    <td>@(item.Product.Price * item.Quantity) VNĐ</td>
+                    <td>@(string.Format("{0:N0}", item.Product.Price * item.Quantity)) VNĐ</td>
                 </tr>
             }
         </tbody>

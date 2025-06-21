@@ -58,7 +58,7 @@ else
                     </form>
                 </td>
 
-                <td>@(item.Price * item.Quantity) đ</td>
+                <td>@(string.Format("{0:N0}", item.Price * item.Quantity)) đ</td>
                 <td>
                     <a asp-action="Remove" asp-route-id="@item.Id" class="btn btn-danger btn-sm">Xóa</a>
                 </td>
@@ -66,7 +66,10 @@ else
         }
     </tbody>
 </table>
-<h4 class="text-end">Tổng tiền: <strong>@ViewBag.Total đ</strong></h4>
+@{
+    var vn = System.Globalization.CultureInfo.GetCultureInfo("vi-VN");
+}
+<h4 class="text-end">Tổng tiền: <strong>@ViewBag.Total.ToString("N0", vn) đ</strong></h4>
 <a asp-action="Clear" class="btn btn-warning">Xóa tất cả</a>
 <a asp-controller="Cart" asp-action="Checkout" class="btn btn-success">Đặt hàng</a>
 

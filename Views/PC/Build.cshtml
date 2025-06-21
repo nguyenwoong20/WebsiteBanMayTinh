@@ -227,7 +227,10 @@
 													<h5 class="card-title text-truncate">@item.Name</h5>
 													<p class="text-danger font-weight-bold mb-2">Giá: @item.Price.ToString("N0") ₫</p>
 													<div class="d-flex justify-content-between">
-														<a asp-action="Details" asp-controller="PC" asp-route-id="@item.Id" class="btn btn-outline-primary btn-sm">
+														<a asp-action="Details"
+														   asp-controller="PC"
+														   asp-route-id="@item.Id"
+														   asp-route-partId="@part.Id" class="btn btn-outline-primary btn-sm">
 															Chi tiết
 														</a>
 														@if(item.Stock > 0)
@@ -278,5 +281,16 @@
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
     <script src="~/js/pc-build.js"></script>
+
+	<script>
+		window.onload = function () {
+			const urlParams = new URLSearchParams(window.location.search);
+			const partId = urlParams.get('partId');
+			if (partId) {
+				const modalId = '#modal' + partId;
+				$(modalId).modal('show');
+			}
+		};
+	</script>
 }
 

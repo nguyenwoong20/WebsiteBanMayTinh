@@ -12,7 +12,7 @@ using Website_BanMayTinh.Models;
 namespace Website_BanMayTinh.Migrations
 {
     [DbContext(typeof(ApplicationDbContext))]
-    [Migration("20250621114523_AddIdentity")]
+    [Migration("20250621140829_AddIdentity")]
     partial class AddIdentity
     {
         /// <inheritdoc />
@@ -167,10 +167,13 @@ namespace Website_BanMayTinh.Migrations
                         .HasColumnType("int");
 
                     b.Property<string>("Address")
+                        .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("Age")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(3)
+                        .HasColumnType("nvarchar(3)");
 
                     b.Property<string>("ConcurrencyStamp")
                         .IsConcurrencyToken()
@@ -205,7 +208,9 @@ namespace Website_BanMayTinh.Migrations
                         .HasColumnType("nvarchar(max)");
 
                     b.Property<string>("PhoneNumber")
-                        .HasColumnType("nvarchar(max)");
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
 
                     b.Property<bool>("PhoneNumberConfirmed")
                         .HasColumnType("bit");

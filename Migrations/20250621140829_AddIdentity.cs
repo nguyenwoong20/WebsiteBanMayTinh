@@ -30,8 +30,8 @@ namespace Website_BanMayTinh.Migrations
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(47)", maxLength: 47, nullable: false),
                     Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
-                    Age = table.Column<string>(type: "nvarchar(3)", maxLength: 3, nullable: true),
-                    PhoneNumber = table.Column<string>(type: "nvarchar(12)", maxLength: 12, nullable: true),
+                    Age = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: true),
+                    PhoneNumber = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     NormalizedUserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
                     Email = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),
@@ -225,7 +225,8 @@ namespace Website_BanMayTinh.Migrations
                     TotalAmount = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     ShippingAddress = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),
-                    IsPay = table.Column<bool>(type: "bit", nullable: false)
+                    IsPay = table.Column<bool>(type: "bit", nullable: false),
+                    OrderDate = table.Column<DateTime>(type: "datetime2(7)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -285,25 +286,6 @@ namespace Website_BanMayTinh.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
-
-            migrationBuilder.AlterColumn<decimal>(
-                name: "PhoneNumber",
-                table: "AspNetUsers",
-                type: "decimal(10,0)",
-                nullable: true,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(12)",
-                oldMaxLength: 12,
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "FullName",
-                table: "AspNetUsers",
-                type: "nvarchar(47)",
-                maxLength: 47,
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(max)");
 
             migrationBuilder.CreateIndex(
                 name: "IX_AspNetRoleClaims_RoleId",
@@ -389,26 +371,6 @@ namespace Website_BanMayTinh.Migrations
             migrationBuilder.DropTable(name: "Brands");
             migrationBuilder.DropTable(name: "Categories");
             migrationBuilder.DropTable(name: "AspNetRoles");
-
-            migrationBuilder.AlterColumn<string>(
-                name: "PhoneNumber",
-                table: "AspNetUsers",
-                type: "nvarchar(12)",
-                maxLength: 12,
-                nullable: true,
-                oldClrType: typeof(decimal),
-                oldType: "decimal(10,0)",
-                oldNullable: true);
-
-            migrationBuilder.AlterColumn<string>(
-                name: "FullName",
-                table: "AspNetUsers",
-                type: "nvarchar(max)",
-                nullable: false,
-                oldClrType: typeof(string),
-                oldType: "nvarchar(47)",
-                oldMaxLength: 47);
-
             migrationBuilder.DropTable(name: "AspNetUsers");
         }
     }

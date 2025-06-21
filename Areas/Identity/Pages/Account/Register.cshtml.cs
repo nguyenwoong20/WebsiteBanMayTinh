@@ -80,6 +80,13 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             public string FullName { get; set; }
             [Required]
             public string Address { get; set; }
+
+            // / Tuổi có thể là số, bắt buộc phải là số nguyên dương, không được để trống và phải bé hơn 100. nếu có lỗi in ra thông báo lỗi
+            [Required(ErrorMessage = "Age is required.")]
+            [Range(1, 100, ErrorMessage = "Age must be a positive integer less than 100.")]
+            [RegularExpression(@"^\d+$", ErrorMessage = "Age must be a positive integer.")]
+            [Display(Name = "Age")]
+            [StringLength(3, ErrorMessage = "Tuổi không được quá 3 ký tự.")]
             public string Age { get; set; }
 
             //Số điện thoại nhiều nhất là 11 ký tự, ít nhất là 10 ký tự. Thông báo lỗi nếu không đúng định dạng và phải là số

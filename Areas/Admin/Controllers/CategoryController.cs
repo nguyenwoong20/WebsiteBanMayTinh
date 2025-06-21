@@ -153,13 +153,26 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id, int page = 1)
         {
             var category = await _context.Categories.FindAsync(id);
-            if (category != null)
+
+            if (category == null)
             {
-                _context.Categories.Remove(category);
+                return NotFound();
             }
 
+            // Kiểm tra xem có sản phẩm nào đang dùng Category này không
+            bool hasProducts = await _context.Products.AnyAsync(p => p.CategoryId == id);
+
+            if (hasProducts)
+            {
+                TempData["Error"] = "Không thể xóa danh mục vì đang có sản phẩm sử dụng!";
+                return RedirectToAction(nameof(Delete), new { id, page });
+            }
+
+            _context.Categories.Remove(category);
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index), new {page});
+
+            TempData["Success"] = "Xóa danh mục thành công!";
+            return RedirectToAction(nameof(Index), new { page });
         }
 
         private bool CategoryExists(int id)

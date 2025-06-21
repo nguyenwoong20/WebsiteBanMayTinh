@@ -153,12 +153,25 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         public async Task<IActionResult> DeleteConfirmed(int id, int page = 1)
         {
             var brand = await _context.Brands.FindAsync(id);
-            if (brand != null)
+
+            if (brand == null)
             {
-                _context.Brands.Remove(brand);
+                return NotFound();
             }
 
+            // Kiểm tra xem Brand có được gán cho sản phẩm nào không
+            bool hasProducts = await _context.Products.AnyAsync(p => p.BrandId == id);
+
+            if (hasProducts)
+            {
+                TempData["Error"] = "Không thể xóa thương hiệu vì đang có sản phẩm sử dụng!";
+                return RedirectToAction(nameof(Delete), new { id, page });
+            }
+
+            _context.Brands.Remove(brand);
             await _context.SaveChangesAsync();
+
+            TempData["Success"] = "Xóa thương hiệu thành công!";
             return RedirectToAction(nameof(Index), new { page });
         }
 

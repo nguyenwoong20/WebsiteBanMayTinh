@@ -19,10 +19,10 @@
             </dl>
 
             <div class="mt-4">
-                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2">
+                <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-warning me-2" asp-route-page="@ViewBag.CurrentPage">
                     <i class="bi bi-pencil-square"></i> Sửa
                 </a>
-                <a asp-action="Index" class="btn btn-secondary">
+                <a asp-action="Index" class="btn btn-secondary" asp-route-page="@ViewBag.CurrentPage">
                     <i class="bi bi-arrow-left-circle"></i> Quay lại danh sách
                 </a>
             </div>

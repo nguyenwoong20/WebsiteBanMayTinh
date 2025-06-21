@@ -80,8 +80,15 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             public string FullName { get; set; }
             [Required]
             public string Address { get; set; }
-            [Required]
             public string Age { get; set; }
+
+            //Số điện thoại nhiều nhất là 11 ký tự, ít nhất là 10 ký tự. Thông báo lỗi nếu không đúng định dạng và phải là số
+            [Required]
+            [StringLength(11, ErrorMessage = "Số điện thoại phải có ít nhất 10 ký tự và nhiều nhất 11 ký tự.")]
+            [RegularExpression(@"^\d{10,11}$", ErrorMessage = "Số điện thoại phải là số và có ít nhất 10 ký tự và nhiều nhất 11 ký tự.")]
+            [Display(Name = "Phone number")]
+            public string PhoneNumber { get; set; }
+
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
@@ -149,6 +156,7 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
                 user.FullName = Input.FullName;
                 user.Address = Input.Address;
                 user.Age = Input.Age;
+                user.PhoneNumber = Input.PhoneNumber;
 
                 await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
                 await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);

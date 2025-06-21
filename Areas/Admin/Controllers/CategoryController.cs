@@ -35,7 +35,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         }
 
         // GET: Categories/Details/5
-        public async Task<IActionResult> Details(int? id)
+        public async Task<IActionResult> Details(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -49,6 +49,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewBag.CurrentPage = page; // Lưu trang hiện tại để sử dụng sau khi xem chi tiết
             return View(category);
         }
 
@@ -75,7 +76,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         }
 
         // GET: Categories/Edit/5
-        public async Task<IActionResult> Edit(int? id)
+        public async Task<IActionResult> Edit(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -87,6 +88,8 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             {
                 return NotFound();
             }
+
+            ViewBag.CurrentPage = page; // Lưu trang hiện tại để sử dụng sau khi chỉnh sửa
             return View(category);
         }
 
@@ -95,7 +98,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category)
+        public async Task<IActionResult> Edit(int id, [Bind("Id,Name")] Category category, int page = 1)
         {
             if (id != category.Id)
             {
@@ -120,13 +123,13 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                         throw;
                     }
                 }
-                return RedirectToAction(nameof(Index));
+                return RedirectToAction(nameof(Index), new {page});
             }
             return View(category);
         }
 
         // GET: Categories/Delete/5
-        public async Task<IActionResult> Delete(int? id)
+        public async Task<IActionResult> Delete(int? id, int page = 1)
         {
             if (id == null)
             {
@@ -140,13 +143,14 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
                 return NotFound();
             }
 
+            ViewBag.CurrentPage = page; // Lưu trang hiện tại để sử dụng sau khi xóa
             return View(category);
         }
 
         // POST: Categories/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> DeleteConfirmed(int id)
+        public async Task<IActionResult> DeleteConfirmed(int id, int page = 1)
         {
             var category = await _context.Categories.FindAsync(id);
             if (category != null)
@@ -155,7 +159,7 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             }
 
             await _context.SaveChangesAsync();
-            return RedirectToAction(nameof(Index));
+            return RedirectToAction(nameof(Index), new {page});
         }
 
         private bool CategoryExists(int id)

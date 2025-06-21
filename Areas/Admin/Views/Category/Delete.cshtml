@@ -28,10 +28,11 @@
 
             <form asp-action="Delete" class="mt-4">
                 <input type="hidden" asp-for="Id" />
+                <input type="hidden" name="page" value="@ViewBag.CurrentPage" />
                 <button type="submit" class="btn btn-danger me-2">
                     <i class="bi bi-trash-fill"></i> Xóa
                 </button>
-                <a asp-action="Index" class="btn btn-secondary">
+                <a asp-action="Index" class="btn btn-secondary" asp-route-page="@ViewBag.CurrentPage">
                     <i class="bi bi-arrow-left-circle"></i> Quay lại
                 </a>
             </form>

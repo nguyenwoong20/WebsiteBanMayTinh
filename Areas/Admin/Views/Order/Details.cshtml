@@ -25,16 +25,45 @@
     </div>
 
     <!-- Thông tin đặt hàng -->
-    <div class="card mb-3">
-        <div class="card-header bg-light">
-            <i class="fas fa-briefcase"></i> <b>Thông Tin Đặt Hàng</b>
+    <div class="row">
+        <!-- Thông tin đặt hàng bên trái -->
+        <div class="col-md-8 mb-3">
+            <div class="card">
+                <div class="card-header bg-light">
+                    <i class="fas fa-briefcase"></i> <b>Thông Tin Đặt Hàng</b>
+                </div>
+                <div class="card-body">
+                    <p><strong><i class="fas fa-file-alt"></i> Mã đơn:</strong> @Model.Id</p>
+                    <p><strong><i class="fas fa-calendar-alt"></i> Ngày đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+                    <p><strong><i class="fas fa-map-marker-alt"></i> Địa chỉ giao hàng:</strong> @Model.ShippingAddress</p>
+                    <p>
+                        <strong><i class="fas fa-credit-card"></i> Phương thức thanh toán:</strong>
+                        <span class="badge bg-primary">
+                            @(Model.PaymentMethod == "BankTransfer" ? "Chuyển khoản" : "Thanh toán khi nhận hàng")
+                        </span>
+                    </p>
+                    <p><strong><i class="fas fa-comment"></i> Ghi chú của khách:</strong> @Model.Notes</p>
+                </div>
+            </div>
         </div>
-        <div class="card-body">
-            <p><strong><i class="fas fa-file-alt"></i> Mã đơn:</strong> @Model.Id</p>
-            <p><strong><i class="fas fa-calendar-alt"></i> Ngày đặt:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
-            <p><strong><i class="fas fa-map-marker-alt"></i> Địa chỉ giao hàng:</strong> @Model.ShippingAddress</p>
-            <p><strong><i class="fas fa-comment"></i> Ghi chú của khách:</strong> @Model.Notes</p>
-        </div>
+
+        <!-- Ảnh chuyển khoản bên phải -->
+        @if (Model.PaymentMethod == "BankTransfer" && !string.IsNullOrEmpty(Model.ReceiptImagePath))
+        {
+            <div class="col-md-4 mb-3">
+                <div class="card">
+                    <div class="card-header bg-light">
+                        <i class="fas fa-image"></i> <b>Ảnh chuyển khoản</b>
+                    </div>
+                    <div class="card-body text-center">
+                        <img src="@Model.ReceiptImagePath"
+                             alt="Ảnh chuyển khoản"
+                             class="img-fluid rounded shadow"
+                             style="max-height: 300px;" />
+                    </div>
+                </div>
+            </div>
+        }
     </div>
 
     <!-- Danh sách sản phẩm -->

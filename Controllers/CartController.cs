@@ -208,7 +208,7 @@ namespace Website_BanMayTinh.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public async Task<IActionResult> Checkout(Order order)
+        public async Task<IActionResult> Checkout(Order order, IFormFile? ReceiptImage, string PaymentMethod)
         {
             var cart = GetCart();
             if (cart == null || !cart.Any())
@@ -226,6 +226,22 @@ namespace Website_BanMayTinh.Controllers
                     TempData["Error"] = $"Sản phẩm với ID {item.Id} không còn tồn tại.";
                     return RedirectToAction("Index");
                 }
+
+                order.PaymentMethod = PaymentMethod;
+
+                if (PaymentMethod == "BankTransfer" && ReceiptImage != null)
+                {
+                    var fileName = Guid.NewGuid().ToString() + Path.GetExtension(ReceiptImage.FileName);
+                    var filePath = Path.Combine(Directory.GetCurrentDirectory(), "wwwroot", "uploads", fileName);
+
+                    using (var stream = new FileStream(filePath, FileMode.Create))
+                    {
+                        await ReceiptImage.CopyToAsync(stream);
+                    }
+
+                    order.ReceiptImagePath = "/uploads/" + fileName;
+                }
+
                 if (product.Stock < item.Quantity)
                 {
                     TempData["Error"] = $"Sản phẩm {product.Name} chỉ còn {product.Stock} cái trong kho.";
@@ -269,6 +285,7 @@ namespace Website_BanMayTinh.Controllers
 
             return View("OrderCompleted", order.Id);
         }
+
 
         [HttpPost]
         public async Task<IActionResult> AddBuildToCart([FromBody] List<CartItemDTO> items)

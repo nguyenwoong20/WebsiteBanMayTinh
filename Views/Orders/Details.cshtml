@@ -10,22 +10,39 @@
 
 
     <div class="card">
-        <div class="card-body">
-            <p><strong>Ngày đặt hàng:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
-            <p>
-                <strong>Trạng thái:</strong>
-                @if (Model.IsPay)
-                {
-                    <span class="badge bg-success">Đã thanh toán</span>
-                }
-                else
-                {
-                    <span class="badge bg-warning text-dark">Chưa thanh toán</span>
-                }
-            </p>
-            <p><strong>Ghi chú:</strong> @Model.Notes</p>
+        <div class="card-body d-flex justify-content-between">
+            <!-- Cột trái: Thông tin đơn hàng -->
+            <div class="w-75 pe-4">
+                <p><strong>Ngày đặt hàng:</strong> @Model.OrderDate.ToString("dd/MM/yyyy")</p>
+                <p>
+                    <strong>Trạng thái:</strong>
+                    @if (Model.IsPay)
+                    {
+                        <span class="badge bg-success">Đã thanh toán</span>
+                    }
+                    else
+                    {
+                        <span class="badge bg-warning text-dark">Chưa thanh toán</span>
+                    }
+                </p>
+                <p><strong>Ghi chú:</strong> @Model.Notes</p>
+                <p>
+                    <strong>Phương thức thanh toán:</strong>
+                    @(Model.PaymentMethod == "BankTransfer" ? "Chuyển khoản" : "Thanh toán khi nhận hàng")
+                </p>
+            </div>
+
+            <!-- Cột phải: Ảnh chuyển khoản -->
+            @if (Model.PaymentMethod == "BankTransfer" && !string.IsNullOrEmpty(Model.ReceiptImagePath))
+            {
+                <div class="w-25 text-end">
+                    <strong>Ảnh chuyển khoản</strong><br />
+                    <img src="@Model.ReceiptImagePath" alt="Ảnh chuyển khoản" class="img-thumbnail mt-2" style="max-width: 100%; height: auto;" />
+                </div>
+            }
         </div>
     </div>
+
 
     <table class="table table-hover mt-3">
         <thead class="table-dark">

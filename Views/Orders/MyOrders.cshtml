@@ -22,6 +22,7 @@
                     <th>Mã đơn hàng</th>
                     <th>Ngày đặt hàng</th>
                     <th>Tổng giá</th>
+                    <th>Phương thức</th>
                     <th>Trạng thái</th>
                     <th>Chi tiết</th>
                 </tr>
@@ -33,6 +34,16 @@
                         <td>@order.Id</td>
                         <td>@order.OrderDate.ToString("dd/MM/yyyy")</td> 
                         <td class="text-end">@order.TotalAmount.ToString("N0") VNĐ</td>
+                        <td>
+                            @if (order.PaymentMethod == "BankTransfer")
+                            {
+                                <span class="badge bg-primary">Chuyển khoản</span>
+                            }
+                            else
+                            {
+                                <span class="badge bg-secondary">Thanh toán khi nhận hàng</span>
+                            }
+                        </td>
                         <td>
                             @if (order.IsPay)
                             {

@@ -2,113 +2,191 @@
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
-@if (TempData["Message"] != null)
-{
-    <div class="alert alert-success">@TempData["Message"]</div>
-}
 
-<h3 class="text-success fw-bold">
-    <i class="bi bi-box-seam"></i> Danh sách đơn đặt hàng
-    <span class="badge bg-primary">@ViewBag.TotalOrders</span>
-</h3>
+<div class="container mt-4">
+    @if (TempData["Message"] != null)
+    {
+        <div class="alert alert-success">@TempData["Message"]</div>
+    }
 
-<!-- Thanh tìm kiếm -->
-<form method="get" class="mb-3 d-flex">
-    <input type="text" name="search" class="form-control me-2" placeholder="Nhập tên khách hàng..." value="@Context.Request.Query["search"]">
-    <button type="submit" class="btn btn-success"><i class="bi bi-search"></i> Tìm kiếm</button>
-</form>
+    <h3 class="text-success fw-bold">
+        <i class="bi bi-box-seam"></i> Danh sách đơn đặt hàng
+        <span class="badge bg-primary">@ViewBag.TotalOrders</span>
+    </h3>
 
-<table class="table table-hover table-striped table-bordered text-center align-middle">
-    <thead class="table-success">
-        <tr>
-            <th>#</th>
-            <th>Tên khách hàng</th>
-            <th>Email</th>
-            <th>Ngày đặt hàng</th>
-            <th>Tổng giá</th>
-            <th>Phương thức thanh toán</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+    <!-- Thanh tìm kiếm -->
+    <!-- Bộ lọc nâng cao -->
+    <form method="get" class="row g-3 mb-4">
+        <!-- Tên khách hàng -->
+        <div class="col-md-3">
+            <input type="text" name="search" class="form-control" placeholder="Nhập tên khách hàng..." value="@Context.Request.Query["search"]" />
+        </div>
+
+        <!-- Phương thức thanh toán -->
+        <div class="col-md-3">
+            <select name="paymentMethod" class="form-select">
+                <option value="">-- Phương thức --</option>
+                <option value="BankTransfer" selected="@(Context.Request.Query["paymentMethod"] == "BankTransfer")">Chuyển khoản</option>
+                <option value="COD" selected="@(Context.Request.Query["paymentMethod"] == "COD")">Thanh toán khi nhận</option>
+            </select>
+        </div>
+
+        <!-- Khoảng thời gian -->
+        <div class="col-md-3">
+            <select name="dateRange" class="form-select">
+                <option value="">-- Khoảng thời gian --</option>
+                <option value="today" selected="@(Context.Request.Query["dateRange"] == "today")">Hôm nay</option>
+                <option value="week" selected="@(Context.Request.Query["dateRange"] == "week")">Tuần này</option>
+                <option value="month" selected="@(Context.Request.Query["dateRange"] == "month")">Tháng này</option>
+            </select>
+        </div>
+
+        <!-- Trạng thái thanh toán -->
+        <div class="col-md-3">
+            <select name="isPaid" class="form-select">
+                <option value="">-- Trạng thái thanh toán --</option>
+                <option value="true" selected="@(Context.Request.Query["isPaid"] == "true")">Đã thanh toán</option>
+                <option value="false" selected="@(Context.Request.Query["isPaid"] == "false")">Chưa thanh toán</option>
+            </select>
+        </div>
+
+        <div class="col-md-12 text-end">
+            <button type="submit" class="btn btn-success">
+                <i class="bi bi-funnel-fill"></i> Lọc
+            </button>
+            <a href="@Url.Action("Index", "Orders", new { area = "Admin" })" class="btn btn-outline-secondary">
+                <i class="bi bi-x-circle"></i> Xóa lọc
+            </a>
+        </div>
+    </form>
+
+
+    <table class="table table-hover table-striped table-bordered text-center align-middle custom-rounded-table">
+        <thead class="table-success">
             <tr>
-                <td>@item.Id</td>
-                <td>
-                    @if (item.User != null)
-                    {
-                        <span class="fw-bold">@item.User.FullName</span>
-                    }
-                    else
-                    {
-                        <span class="text-danger">N/A</span>
-                    }
-                </td>
-                <td>
-                    @if (item.User != null)
-                    {
-                        <a href="mailto:@item.User.Email" class="text-decoration-none">@item.User.Email</a>
-                    }
-                    else
-                    {
-                        <span class="text-danger">N/A</span>
-                    }
-                </td>
-                <td>@item.OrderDate.ToString("dd/MM/yyyy")</td>
-                <td class="text-end">@item.TotalAmount.ToString("N2") VNĐ</td>
-                <td>
-                    @if (item.PaymentMethod == "BankTransfer")
-                    {
-                        <span class="badge bg-primary">Chuyển khoản</span>
-                    }
-                    else if (item.PaymentMethod == "COD")
-                    {
-                        <span class="badge bg-secondary">Thanh toán khi nhận hàng</span>
-                    }
-                    else
-                    {
-                        <span class="text-muted">Không rõ</span>
-                    }
-                </td>
-                <td>
-                    @if (item.IsPay)
-                    {
-                        <span class="badge bg-success">Đã thanh toán</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-warning text-dark">Chưa thanh toán</span>
-                    }
-                </td>
-                <td>
-                    <a asp-action="Details" asp-route-id="@item.Id" asp-route-pageNumber="@ViewBag.CurrentPage" class="btn btn-sm btn-info">
-                        <i class="bi bi-eye"></i> Xem
-                    </a>
-                    @if (!item.IsPay)
-                    {
-                        <form asp-action="ConfirmPayment" asp-route-id="@item.Id" asp-route-pageNumber="@ViewBag.CurrentPage" method="post" class="d-inline">
-                            <button type="submit" class="btn btn-sm btn-warning">
-                                <i class="bi bi-cash"></i> Xác nhận thanh toán
-                            </button>
-                        </form>
-                    }
-                    <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" asp-route-pageNumber="@ViewBag.CurrentPage">
-                        <i class="bi bi-trash"></i> Xóa
-                    </a>
-                </td>
+                <th>#</th>
+                <th>Tên khách hàng</th>
+                <th>Email</th>
+                <th>Ngày đặt hàng</th>
+                <th>Tổng giá</th>
+                <th>Phương thức thanh toán</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
             </tr>
-        }
-    </tbody>
-</table>
-<nav>
-    <ul class="pagination justify-content-center">
-        @for (int i = 1; i <= ViewBag.TotalPages; i++)
-        {
-            <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
-                <a class="page-link" asp-action="Index" asp-route-search="@ViewBag.Search" asp-route-pageNumber="@i">@i</a>
-            </li>
-        }
-    </ul>
-</nav>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>@item.Id</td>
+                    <td class="td-name">
+                        @if (item.User != null)
+                        {
+                            <span class="fw-bold">@item.User.FullName</span>
+                        }
+                        else
+                        {
+                            <span class="text-danger">N/A</span>
+                        }
+                    </td>
+                    <td class="td-email">
+                        @if (item.User != null)
+                        {
+                            <a href="mailto:@item.User.Email" class="text-decoration-none">@item.User.Email</a>
+                        }
+                        else
+                        {
+                            <span class="text-danger">N/A</span>
+                        }
+                    </td>
+                    <td>@item.OrderDate.ToString("dd/MM/yyyy")</td>
+                    <td class="text-end">@item.TotalAmount.ToString("N2") VNĐ</td>
+                    <td>
+                        @if (item.PaymentMethod == "BankTransfer")
+                        {
+                            <span class="badge bg-primary">Chuyển khoản</span>
+                        }
+                        else if (item.PaymentMethod == "COD")
+                        {
+                            <span class="badge bg-secondary">Thanh toán khi nhận hàng</span>
+                        }
+                        else
+                        {
+                            <span class="text-muted">Không rõ</span>
+                        }
+                    </td>
+                    <td>
+                        @if (item.IsPay)
+                        {
+                            <span class="badge bg-success">Đã thanh toán</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-warning text-dark">Chưa thanh toán</span>
+                        }
+                    </td>
+                    <td class="text-nowrap">
+                        <div class="btn-group-actions">
+                            <a asp-action="Details" asp-route-id="@item.Id" asp-route-pageNumber="@ViewBag.CurrentPage" class="btn btn-sm btn-info">
+                                <i class="bi bi-eye"></i>
+                            </a>
+                            @if (!item.IsPay)
+                            {
+                                <form asp-action="ConfirmPayment" asp-route-id="@item.Id" asp-route-pageNumber="@ViewBag.CurrentPage" method="post">
+                                    <button type="submit" class="btn btn-sm btn-warning">
+                                        <i class="bi bi-cash"></i>
+                                    </button>
+                                </form>
+                            }
+                            <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger" asp-route-pageNumber="@ViewBag.CurrentPage">
+                                <i class="bi bi-trash"></i>
+                            </a>
+                        </div>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+    <nav>
+        <ul class="pagination justify-content-center">
+            @for (int i = 1; i <= ViewBag.TotalPages; i++)
+            {
+                <li class="page-item @(i == ViewBag.CurrentPage ? "active" : "")">
+                    <a class="page-link" asp-action="Index" asp-route-search="@ViewBag.Search" asp-route-pageNumber="@i">@i</a>
+                </li>
+            }
+        </ul>
+    </nav>
+</div>
+
+<style>
+    td, th {
+        vertical-align: middle;
+        white-space: nowrap;
+    }
+
+    .td-name, .td-email {
+        max-width: 200px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+    }
+
+    .btn-group-actions {
+        display: flex;
+        gap: 4px;
+        flex-wrap: nowrap;
+    }
+
+    .custom-rounded-table {
+        border-radius: 12px;
+        overflow: hidden;
+        box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Tùy chọn: thêm đổ bóng nhẹ */
+    }
+
+    .custom-rounded-table thead th {
+        background-color: #d1e7dd; /* màu nền hàng đầu */
+    }
+</style>
+
+
+

@@ -1,0 +1,31 @@
+﻿@model Website_BanMayTinh.Models.VerifyOtpViewModel
+
+@{
+    ViewData["Title"] = "Xác nhận OTP";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<div class="container mt-4">
+    <div class="card shadow-sm">
+        <div class="card-header bg-primary text-white">
+            <h4><i class="bi bi-shield-check"></i> Xác nhận mã OTP</h4>
+        </div>
+        <div class="card-body">
+            <form asp-action="VerifyOtp" method="post">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+                <div class="mb-3">
+                    <label class="form-label fw-bold">Mã OTP gửi về Email</label>
+                    <input asp-for="OtpCode" class="form-control" />
+                    <span asp-validation-for="OtpCode" class="text-danger"></span>
+                </div>
+
+                <button type="submit" class="btn btn-success">
+                    <i class="bi bi-check-circle"></i> Xác nhận
+                </button>
+            </form>
+        </div>
+    </div>
+</div>
+
+<partial name="_ValidationScriptsPartial" />

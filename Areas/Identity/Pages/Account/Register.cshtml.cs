@@ -1,15 +1,7 @@
-﻿// Licensed to the .NET Foundation under one or more agreements.
-// The .NET Foundation licenses this file to you under the MIT license.
-#nullable disable
+﻿#nullable disable
 
-using System;
-using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
-using System.Linq;
 using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading;
-using System.Threading.Tasks;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Identity;
@@ -18,12 +10,12 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.Extensions.Logging;
 using Website_BanMayTinh.Models;
 
 namespace Website_BanMayTinh.Areas.Identity.Pages.Account
 {
+    [AllowAnonymous]
     public class RegisterModel : PageModel
     {
         private readonly SignInManager<ApplicationUser> _signInManager;
@@ -51,35 +43,17 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             _emailSender = emailSender;
         }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         [BindProperty]
         public InputModel Input { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>  
         public string ReturnUrl { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public IList<AuthenticationScheme> ExternalLogins { get; set; }
 
-        /// <summary>
-        ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
-        ///     directly from your code. This API may change or be removed in future releases.
-        /// </summary>
         public class InputModel
         {
             [Required]
             public string FullName { get; set; }
-            [Required]
-            public string Address { get; set; }
 
             // / Tuổi có thể là số, bắt buộc phải là số nguyên dương, không được để trống và phải bé hơn 100. nếu có lỗi in ra thông báo lỗi
             [Required(ErrorMessage = "Age is required.")]
@@ -129,23 +103,22 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             public IEnumerable<SelectListItem> RoleList { get; set; }
         }
 
-
         public async Task OnGetAsync(string returnUrl = null)
         {
-            if(!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
+            if (!_roleManager.RoleExistsAsync(SD.Role_Customer).GetAwaiter().GetResult())
             {
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin)).GetAwaiter().GetResult();
-                _roleManager.CreateAsync(new IdentityRole(SD.Role_Company)).GetAwaiter().GetResult();
+                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Customer));
+                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Employee));
+                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Admin));
+                await _roleManager.CreateAsync(new IdentityRole(SD.Role_Company));
             }
 
             Input = new()
             {
-                RoleList = _roleManager.Roles.Select(x => x.Name).Select(i => new SelectListItem
+                RoleList = _roleManager.Roles.Select(x => new SelectListItem
                 {
-                    Text = i,
-                    Value = i
+                    Text = x.Name,
+                    Value = x.Name
                 })
             };
 
@@ -157,61 +130,29 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
         {
             returnUrl ??= Url.Content("~/");
             ExternalLogins = (await _signInManager.GetExternalAuthenticationSchemesAsync()).ToList();
+
             if (ModelState.IsValid)
             {
-                var user = CreateUser();
-                user.FullName = Input.FullName;
-                user.Address = Input.Address;
-                user.Age = Input.Age;
-                user.PhoneNumber = Input.PhoneNumber;
+                // 1. Tạo OTP
+                var otp = new Random().Next(100000, 999999).ToString();
 
-                await _userStore.SetUserNameAsync(user, Input.Email, CancellationToken.None);
-                await _emailStore.SetEmailAsync(user, Input.Email, CancellationToken.None);
-                var result = await _userManager.CreateAsync(user, Input.Password);
+                // 2. Gửi email chứa OTP
+                await _emailSender.SendEmailAsync(Input.Email, "Xác minh OTP đăng ký",
+                    $"<p>Mã OTP của bạn là: <strong>{otp}</strong></p>");
 
-                if (result.Succeeded)
-                {
-                    _logger.LogInformation("User created a new account with password.");
+                // 3. Lưu thông tin vào session để sử dụng khi xác minh
+                HttpContext.Session.SetString("RegisterOtp_" + Input.Email, otp);
+                HttpContext.Session.SetString("Register_FullName", Input.FullName);
+                HttpContext.Session.SetString("Register_Age", Input.Age);
+                HttpContext.Session.SetString("Register_Phone", Input.PhoneNumber);
+                HttpContext.Session.SetString("Register_Password", Input.Password);
+                HttpContext.Session.SetString("Register_Role", Input.Role ?? "");
 
-                    if(!String.IsNullOrEmpty(Input.Role))
-                    {
-                        await _userManager.AddToRoleAsync(user, Input.Role);
-                    }
-                    else
-                    {
-                        await _userManager.AddToRoleAsync(user, SD.Role_Customer);
-                    }    
-
-
-                    var userId = await _userManager.GetUserIdAsync(user);
-                    var code = await _userManager.GenerateEmailConfirmationTokenAsync(user);
-                    code = WebEncoders.Base64UrlEncode(Encoding.UTF8.GetBytes(code));
-                    var callbackUrl = Url.Page(
-                        "/Account/ConfirmEmail",
-                        pageHandler: null,
-                        values: new { area = "Identity", userId = userId, code = code, returnUrl = returnUrl },
-                        protocol: Request.Scheme);
-
-                    await _emailSender.SendEmailAsync(Input.Email, "Confirm your email",
-                        $"Please confirm your account by <a href='{HtmlEncoder.Default.Encode(callbackUrl)}'>clicking here</a>.");
-
-                    if (_userManager.Options.SignIn.RequireConfirmedAccount)
-                    {
-                        return RedirectToPage("RegisterConfirmation", new { email = Input.Email, returnUrl = returnUrl });
-                    }
-                    else
-                    {
-                        await _signInManager.SignInAsync(user, isPersistent: false);
-                        return LocalRedirect(returnUrl);
-                    }
-                }
-                foreach (var error in result.Errors)
-                {
-                    ModelState.AddModelError(string.Empty, error.Description);
-                }
+                // 4. Chuyển sang trang xác minh OTP
+                return RedirectToPage("VerifyOtpRegister", new { email = Input.Email });
             }
 
-            // If we got this far, something failed, redisplay form
+            // Nếu lỗi, hiển thị lại form
             return Page();
         }
 
@@ -223,9 +164,7 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             }
             catch
             {
-                throw new InvalidOperationException($"Can't create an instance of '{nameof(ApplicationUser)}'. " +
-                    $"Ensure that '{nameof(ApplicationUser)}' is not an abstract class and has a parameterless constructor, or alternatively " +
-                    $"override the register page in /Areas/Identity/Pages/Account/Register.cshtml");
+                throw new InvalidOperationException($"Không thể khởi tạo lớp '{nameof(ApplicationUser)}'.");
             }
         }
 
@@ -233,7 +172,7 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
         {
             if (!_userManager.SupportsUserEmail)
             {
-                throw new NotSupportedException("The default UI requires a user store with email support.");
+                throw new NotSupportedException("Identity mặc định yêu cầu UserStore hỗ trợ email.");
             }
             return (IUserEmailStore<ApplicationUser>)_userStore;
         }

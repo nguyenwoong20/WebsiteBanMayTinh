@@ -1,0 +1,36 @@
+﻿@page
+@model Website_BanMayTinh.Areas.Identity.Pages.Account.VerifyOtpModel
+@{
+    ViewData["Title"] = "Xác minh OTP";
+}
+
+<div class="container py-5">
+    <div class="row justify-content-center">
+        <div class="col-md-6">
+            <div class="card shadow">
+                <div class="card-header bg-dark text-warning text-center">
+                    <h4>Xác minh mã OTP</h4>
+                </div>
+                <div class="card-body">
+                    <p class="text-center">Vui lòng nhập mã OTP đã gửi đến email của bạn.</p>
+
+                    <form method="post">
+                        <div asp-validation-summary="ModelOnly" class="text-danger mb-3"></div>
+
+                        <div class="form-group mb-3">
+                            <label asp-for="Input.OTP"></label>
+                            <input asp-for="Input.OTP" class="form-control" />
+                            <span asp-validation-for="Input.OTP" class="text-danger"></span>
+                        </div>
+
+                        <button type="submit" class="btn btn-warning w-100">Xác nhận</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

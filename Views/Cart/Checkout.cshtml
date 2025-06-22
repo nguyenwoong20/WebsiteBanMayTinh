@@ -4,28 +4,62 @@
     <h2 class="text-center fw-bold text-primary">Thanh Toán</h2>
 
     <div class="card shadow-sm p-4">
-        <form asp-action="Checkout" method="post">
+        <form asp-action="Checkout" method="post" enctype="multipart/form-data">
             <div class="mb-3">
                 <label asp-for="ShippingAddress" class="form-label">Địa chỉ giao hàng</label>
                 <input asp-for="ShippingAddress" class="form-control" placeholder="Nhập địa chỉ của bạn..." />
             </div>
             <div class="mb-3">
                 <label asp-for="Notes" class="form-label">Ghi chú</label>
-                <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Nhập ghi chú thêm..."></textarea>
+                <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Nhập ghi chú thêm kèm số tiền đã đặt cọc (nếu có)..."></textarea>
             </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phương thức thanh toán</label><br />
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="COD" checked id="payCod" />
+                    <label class="form-check-label" for="payCod">Thanh toán khi nhận hàng</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="BankTransfer" id="payBank" />
+                    <label class="form-check-label" for="payBank">Chuyển khoản</label>
+                </div>
+            </div>
+
+            <div id="bankTransferInfo" style="display:none">
+                <div class="mb-3 text-center">
+                    <p class="fw-bold">Vui lòng quét mã QR dưới đây để thanh toán:</p>
+                    <p class="fw-bold">Nội dung: "Chuyển tiền mua máy tính cho LVComputer"</p>
+                    <p class="text-danger">Lưu ý nội dung chuyển khoản để tránh nhầm lẫn.</p>
+
+
+                    <img src="/LVComputer/QR_NguyenLeHoanHao.jpg" alt="QR Code" class="img-fluid rounded" style="max-width: 300px;" />
+                </div>
+                <div class="mb-3">
+                    <label class="form-label">Tải lên hình ảnh biên lai chuyển khoản</label>
+                    <input type="file" name="ReceiptImage" accept="image/*" class="form-control" />
+                </div>
+            </div>
+
             <button type="submit" class="btn btn-primary w-100 fw-bold">Đặt hàng</button>
         </form>
     </div>
 </div>
 
-<style>
-    body {
-        background-color: #f8f9fa;
-    }
+@section Scripts {
+    <script>
+        const codRadio = document.getElementById('payCod');
+        const bankRadio = document.getElementById('payBank');
+        const bankInfo = document.getElementById('bankTransferInfo');
 
-    .card {
-        max-width: 500px;
-        margin: auto;
-        border-radius: 10px;
-    }
-</style>
+        function toggleBankInfo() {
+            bankInfo.style.display = bankRadio.checked ? 'block' : 'none';
+        }
+
+        codRadio.addEventListener('change', toggleBankInfo);
+        bankRadio.addEventListener('change', toggleBankInfo);
+
+        // Khởi động đúng trạng thái khi load lại form
+        toggleBankInfo();
+    </script>
+}

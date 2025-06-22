@@ -26,7 +26,8 @@
             <th>Email</th>
             <th>Ngày đặt hàng</th>
             <th>Tổng giá</th>
-			<th>Trạng thái</th>
+            <th>Phương thức thanh toán</th>
+            <th>Trạng thái</th>
             <th>Hành động</th>
         </tr>
     </thead>
@@ -57,6 +58,20 @@
                 </td>
                 <td>@item.OrderDate.ToString("dd/MM/yyyy")</td>
                 <td class="text-end">@item.TotalAmount.ToString("N2") VNĐ</td>
+                <td>
+                    @if (item.PaymentMethod == "BankTransfer")
+                    {
+                        <span class="badge bg-primary">Chuyển khoản</span>
+                    }
+                    else if (item.PaymentMethod == "COD")
+                    {
+                        <span class="badge bg-secondary">Thanh toán khi nhận hàng</span>
+                    }
+                    else
+                    {
+                        <span class="text-muted">Không rõ</span>
+                    }
+                </td>
                 <td>
                     @if (item.IsPay)
                     {

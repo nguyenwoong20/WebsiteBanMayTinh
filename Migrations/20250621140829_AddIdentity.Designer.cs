@@ -166,10 +166,6 @@ namespace Website_BanMayTinh.Migrations
                     b.Property<int>("AccessFailedCount")
                         .HasColumnType("int");
 
-                    b.Property<string>("Address")
-                        .IsRequired()
-                        .HasColumnType("nvarchar(max)");
-
                     b.Property<string>("Age")
                         .IsRequired()
                         .HasMaxLength(3)

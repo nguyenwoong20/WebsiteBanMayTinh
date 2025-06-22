@@ -24,5 +24,10 @@ namespace Website_BanMayTinh.Models
         public ApplicationUser? User { get; set; }
 
         public List<OrderDetail>? OrderDetails { get; set; }
+
+        public string? PaymentMethod { get; set; }
+
+        public string? ReceiptImagePath { get; set; }
+
     }
 }

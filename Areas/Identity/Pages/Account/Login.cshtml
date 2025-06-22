@@ -4,37 +4,49 @@
     ViewData["Title"] = "Đăng nhập";
 }
 
-<div class="fullscreen-center">
-    <div class="card shadow-lg border-0" style="width: 500px;">
-        <div class="card-header bg-dark text-warning text-center rounded-top">
-            <h4 class="mb-0">🔐 Đăng nhập tài khoản</h4>
+<div class="d-flex justify-content-center align-items-center" style="min-height: 85vh;">
+    <div class="card shadow-lg border-0 rounded-4" style="width: 100%; max-width: 500px;">
+        <div class="card-header bg-black text-warning text-center rounded-top-4">
+            <h4 class="mb-0"><i class="bi bi-box-arrow-in-right me-2"></i>Đăng nhập tài khoản</h4>
         </div>
-        <div class="card-body bg-light rounded-bottom">
+        <div class="card-body bg-light px-4 py-4 rounded-bottom-4">
             <form method="post">
                 <div asp-validation-summary="All" class="text-danger mb-3"></div>
 
-                <div class="form-group">
-                    <label asp-for="Input.Email" class="font-weight-bold">Email</label>
+                <div class="mb-3">
+                    <label asp-for="Input.Email" class="form-label fw-bold">Email</label>
                     <input asp-for="Input.Email" class="form-control rounded-pill" />
                     <span asp-validation-for="Input.Email" class="text-danger"></span>
                 </div>
 
-                <div class="form-group">
-                    <label asp-for="Input.Password" class="font-weight-bold">Mật khẩu</label>
+                <div class="mb-3">
+                    <label asp-for="Input.Password" class="form-label fw-bold">Mật khẩu</label>
                     <input asp-for="Input.Password" class="form-control rounded-pill" />
                     <span asp-validation-for="Input.Password" class="text-danger"></span>
                 </div>
 
-                <div class="form-group form-check">
+                <div class="form-check mb-4">
                     <input asp-for="Input.RememberMe" class="form-check-input" />
                     <label asp-for="Input.RememberMe" class="form-check-label">Ghi nhớ đăng nhập</label>
                 </div>
 
-                <button type="submit" class="btn btn-warning btn-block rounded-pill font-weight-bold shadow-sm">Đăng nhập</button>
+                <button type="submit" class="btn btn-warning w-100 rounded-pill fw-bold shadow-sm mb-3">
+                    <i class="bi bi-box-arrow-in-right me-1"></i> Đăng nhập
+                </button>
 
-                <div class="mt-4 text-center">
-                    <a asp-page="./Register" class="text-primary">Chưa có tài khoản? <strong>Đăng ký</strong></a><br />
-                    <a asp-page="./ForgotPassword" class="text-secondary small">Quên mật khẩu?</a>
+                <div class="text-center mb-3">
+                    <span class="text-muted">Hoặc</span>
+                </div>
+
+                <div class="d-grid gap-2 mb-4">
+                    <a href="/signin-google" class="btn btn-outline-dark w-100 rounded-pill">
+                        <i class="bi bi-google me-2"></i>Đăng nhập bằng Google
+                    </a>
+                </div>
+
+                <div class="text-center">
+                    <a asp-page="./Register" class="text-decoration-none text-primary">Chưa có tài khoản? <strong>Đăng ký</strong></a><br />
+                    <a asp-page="./ForgotPassword" class="text-decoration-none small text-secondary">Quên mật khẩu?</a>
                 </div>
             </form>
         </div>

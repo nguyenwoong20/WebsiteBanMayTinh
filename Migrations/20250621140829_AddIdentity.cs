@@ -29,7 +29,6 @@ namespace Website_BanMayTinh.Migrations
                 {
                     Id = table.Column<string>(type: "nvarchar(450)", nullable: false),
                     FullName = table.Column<string>(type: "nvarchar(47)", maxLength: 47, nullable: false),
-                    Address = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Age = table.Column<string>(type: "varchar(3)", maxLength: 3, nullable: true),
                     PhoneNumber = table.Column<string>(type: "varchar(11)", maxLength: 11, nullable: true),
                     UserName = table.Column<string>(type: "nvarchar(256)", maxLength: 256, nullable: true),

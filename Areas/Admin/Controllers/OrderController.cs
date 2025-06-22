@@ -16,25 +16,60 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
         {
             _context = context;
         }
-        public async Task<IActionResult> Index(string search, int? pageNumber)
+        public async Task<IActionResult> Index(string search, string paymentMethod, string dateRange, string isPaid, int? pageNumber)
         {
-            int pageSize = 5; // Số lượng đơn hàng trên mỗi trang
-            int currentPage = pageNumber ?? 1;// Trang hiện tại
+            int pageSize = 5;
+            int currentPage = pageNumber ?? 1;
 
             var orders = _context.Orders
                 .Include(o => o.User)
-                .AsQueryable(); // Cho phép lọc dữ liệu
+                .AsQueryable();
 
+            // Lọc theo tên hoặc email người dùng
             if (!string.IsNullOrEmpty(search))
             {
                 orders = orders.Where(o => o.User != null &&
-                    (o.User.FullName.Contains(search) || o.User.Email.Contains(search)));
+                    (o.User.FullName.Contains(search) || o.User.Email.Contains(search) || o.User.PhoneNumber.Contains(search)));
+            }
+
+            // Lọc theo phương thức thanh toán
+            if (!string.IsNullOrEmpty(paymentMethod))
+            {
+                orders = orders.Where(o => o.PaymentMethod == paymentMethod);
+            }
+
+            // Lọc theo khoảng thời gian
+            if (!string.IsNullOrEmpty(dateRange))
+            {
+                var today = DateTime.Today;
+
+                if (dateRange == "today")
+                {
+                    orders = orders.Where(o => o.OrderDate.Date == today);
+                }
+                else if (dateRange == "week")
+                {
+                    var startOfWeek = today.AddDays(-(int)today.DayOfWeek);
+                    orders = orders.Where(o => o.OrderDate >= startOfWeek);
+                }
+                else if (dateRange == "month")
+                {
+                    var startOfMonth = new DateTime(today.Year, today.Month, 1);
+                    orders = orders.Where(o => o.OrderDate >= startOfMonth);
+                }
+            }
+
+            // Lọc theo trạng thái thanh toán
+            if (!string.IsNullOrEmpty(isPaid))
+            {
+                bool isPaidBool = isPaid == "true";
+                orders = orders.Where(o => o.IsPay == isPaidBool);
             }
 
             int totalOrders = await orders.CountAsync();
             int totalPages = (int)Math.Ceiling((double)totalOrders / pageSize);
 
-            if (currentPage < 1) currentPage = 1; // ✅ Không cho nhỏ hơn 1
+            if (currentPage < 1) currentPage = 1;
             if (currentPage > totalPages && totalPages > 0) currentPage = totalPages;
 
             var pagedOrders = await orders
@@ -48,8 +83,14 @@ namespace Website_BanMayTinh.Areas.Admin.Controllers
             ViewBag.Search = search;
             ViewBag.TotalOrders = totalOrders;
 
+            // Truyền lại dữ liệu bộ lọc cho View
+            ViewBag.PaymentMethod = paymentMethod;
+            ViewBag.DateRange = dateRange;
+            ViewBag.IsPaid = isPaid;
+
             return View(pagedOrders);
         }
+
 
         public async Task<IActionResult> Details(int? id, int pageNumber = 1)
         {

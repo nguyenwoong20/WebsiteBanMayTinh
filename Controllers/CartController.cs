@@ -262,6 +262,13 @@ namespace Website_BanMayTinh.Controllers
             order.OrderDate = DateTime.UtcNow;
             order.TotalAmount = cart.Sum(i => i.Price * i.Quantity);
             order.OrderDetails = new List<OrderDetail>(); // Khởi tạo danh sách
+
+            if (string.IsNullOrEmpty(order.ShippingAddress))
+            {
+                ModelState.AddModelError("ShippingAddress", "Địa chỉ giao hàng là bắt buộc.");
+                return View(order);
+            }
+
             foreach (var item in cart)
             {
                 order.OrderDetails.Add(new OrderDetail

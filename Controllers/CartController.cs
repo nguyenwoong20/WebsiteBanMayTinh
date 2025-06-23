@@ -210,6 +210,12 @@ namespace Website_BanMayTinh.Controllers
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Checkout(Order order, IFormFile? ReceiptImage, string PaymentMethod)
         {
+            if (!ModelState.IsValid)
+            {
+                // Gửi lại view cùng với model để hiển thị lỗi
+                return View(order);
+            }
+
             var cart = GetCart();
             if (cart == null || !cart.Any())
             {

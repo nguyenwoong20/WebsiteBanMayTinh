@@ -8,6 +8,7 @@
             <div class="mb-3">
                 <label asp-for="ShippingAddress" class="form-label">Địa chỉ giao hàng</label>
                 <input asp-for="ShippingAddress" class="form-control" placeholder="Nhập địa chỉ của bạn..." />
+                <span asp-validation-for="ShippingAddress" class="text-danger"></span>
             </div>
             <div class="mb-3">
                 <label asp-for="Notes" class="form-label">Ghi chú</label>

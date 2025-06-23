@@ -4,6 +4,7 @@ namespace Website_BanMayTinh.Models
 {
     public class ProfileViewModel
     {
+        [EmailAddress]
         [Display(Name = "Email")]
         public string Email { get; set; }
 

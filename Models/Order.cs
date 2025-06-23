@@ -8,7 +8,7 @@ namespace Website_BanMayTinh.Models
 
         public DateTime OrderDate { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Địa chỉ giao hàng là bắt buộc")]
         [StringLength(150)]
         public string ShippingAddress { get; set; }
 

@@ -65,7 +65,7 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Bạn chưa nhập tài khoản")]
             [EmailAddress]
             public string Email { get; set; }
 
@@ -73,7 +73,7 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Bạn chưa nhập mật khẩu")]
             [DataType(DataType.Password)]
             public string Password { get; set; }
 
@@ -129,7 +129,7 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
                 }
                 else
                 {
-                    ModelState.AddModelError(string.Empty, "Invalid login attempt.");
+                    ModelState.AddModelError(string.Empty, "Tài khoản hoặc mật khẩu không đúng");
                     return Page();
                 }
             }

@@ -11,7 +11,7 @@
         </div>
         <div class="card-body bg-light px-4 py-4 rounded-bottom-4">
             <form asp-route-returnUrl="@Model.ReturnUrl" method="post">
-                <div asp-validation-summary="All" class="text-danger"></div>
+                @* <div asp-validation-summary="All" class="text-danger"></div> *@
 
                 <div class="mb-3">
                     <label asp-for="Input.FullName" class="form-label"></label>

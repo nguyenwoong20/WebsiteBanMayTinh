@@ -6,8 +6,10 @@ namespace Website_BanMayTinh.Models
     {
         public int Id { get; set; }
 
-        [Required]
-        [StringLength(50)] // Không nên để nvarchar(max)
+        [Required(ErrorMessage = "Tên thương hiệu là bắt buộc")]
+        [StringLength(20)] // Không nên để nvarchar(max)
+        [RegularExpression(@"^(?!\s)[a-zA-Z0-9\s]+$", ErrorMessage = "Tên sản phẩm chỉ được chứa chữ cái, số và khoảng trắng, không bắt đầu bằng khoảng trắng.")]
+        [Display(Name = "Tên thương hiệu")]
         public string Name { get; set; }
 
         public List<Product>? Products { get; set; }

@@ -52,29 +52,32 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
 
         public class InputModel
         {
-            [Required]
+            [Required(ErrorMessage = "Họ và tên là bắt buộc")]
+            [StringLength(47, ErrorMessage = "Họ và tên phải có độ dài tối đa 47 ký tự.")]
+            [RegularExpression(@"^(?!\s)[a-zA-Z\s]+$", ErrorMessage = "Họ và tên chỉ được chứa chữ cái và khoảng trắng, không bắt đầu bằng khoảng trắng.")]
+            [Display(Name = "Họ và tên")]
             public string FullName { get; set; }
 
             // / Tuổi có thể là số, bắt buộc phải là số nguyên dương, không được để trống và phải bé hơn 100. nếu có lỗi in ra thông báo lỗi
-            [Required(ErrorMessage = "Age is required.")]
-            [Range(1, 100, ErrorMessage = "Age must be a positive integer less than 100.")]
-            [RegularExpression(@"^\d+$", ErrorMessage = "Age must be a positive integer.")]
-            [Display(Name = "Age")]
+            [Required(ErrorMessage = "Tuổi là bắt buộc")]
+            [Range(1, 100, ErrorMessage = "Tuổi phải từ 1 tuổi đến 100 tuổi")]
+            [RegularExpression(@"^\d+$", ErrorMessage = "Tuổi phải là số dương")]
+            [Display(Name = "Tuổi")]
             [StringLength(3, ErrorMessage = "Tuổi không được quá 3 ký tự.")]
             public string Age { get; set; }
 
             //Số điện thoại nhiều nhất là 11 ký tự, ít nhất là 10 ký tự. Thông báo lỗi nếu không đúng định dạng và phải là số
-            [Required]
+            [Required(ErrorMessage = "Số điện thoại là bắt buộc")]
             [StringLength(11, ErrorMessage = "Số điện thoại phải có ít nhất 10 ký tự và nhiều nhất 11 ký tự.")]
             [RegularExpression(@"^\d{10,11}$", ErrorMessage = "Số điện thoại phải là số và có ít nhất 10 ký tự và nhiều nhất 11 ký tự.")]
-            [Display(Name = "Phone number")]
+            [Display(Name = "Số điện thoại")]
             public string PhoneNumber { get; set; }
 
             /// <summary>
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
+            [Required(ErrorMessage = "Email là bắt buộc")]
             [EmailAddress]
             [Display(Name = "Email")]
             public string Email { get; set; }
@@ -83,10 +86,10 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             ///     This API supports the ASP.NET Core Identity default UI infrastructure and is not intended to be used
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
-            [Required]
-            [StringLength(100, ErrorMessage = "The {0} must be at least {2} and at max {1} characters long.", MinimumLength = 6)]
+            [Required(ErrorMessage = "Mật khẩu là bắt buộc")]
+            [StringLength(100, ErrorMessage = "{0} phải có độ dài từ {2} đến {1} ký tự.\"", MinimumLength = 6)]
             [DataType(DataType.Password)]
-            [Display(Name = "Password")]
+            [Display(Name = "Mật khẩu")]
             public string Password { get; set; }
 
             /// <summary>
@@ -94,8 +97,8 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
             ///     directly from your code. This API may change or be removed in future releases.
             /// </summary>
             [DataType(DataType.Password)]
-            [Display(Name = "Confirm password")]
-            [Compare("Password", ErrorMessage = "The password and confirmation password do not match.")]
+            [Display(Name = "Xác nhận mật khẩu")]
+            [Compare("Password", ErrorMessage = "Mật khẩu không khớp.")]
             public string ConfirmPassword { get; set; }
 
             public string? Role { get; set; }

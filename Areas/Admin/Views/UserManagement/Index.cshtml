@@ -4,52 +4,54 @@
     Layout = "~/Views/Shared/_MyLayout.cshtml";
 }
 
-<h3 class="mb-3">Quản lý người dùng</h3>
+<div class="container mt-4">
+    <h3 class="mb-3">Quản lý người dùng</h3>
 
-<table class="table table-bordered table-striped">
-    <thead>
-        <tr>
-            <th>Email</th>
-            <th>Họ tên</th>
-            <th>Điện thoại</th>
-            <th>Vai trò</th>
-            <th>Trạng thái</th>
-            <th>Hành động</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var user in Model)
-        {
+    <table class="table table-bordered table-striped">
+        <thead>
             <tr>
-                <td>@user.Email</td>
-                <td>@user.FullName</td>
-                <td>@user.PhoneNumber</td>
-                <td>@string.Join(", ", user.Roles)</td>
-                <td>
-                    @if (user.IsLocked)
-                    {
-                        <span class="badge bg-danger">Đã khoá</span>
-                    }
-                    else
-                    {
-                        <span class="badge bg-success">Đang hoạt động</span>
-                    }
-                </td>
-                <td>
-                    <form asp-action="ToggleLock" method="post" asp-controller="UserManagement" class="d-inline">
-                        <input type="hidden" name="id" value="@user.Id" />
-                        <button class="btn btn-sm btn-warning" type="submit">
-                            @(user.IsLocked ? "Mở khoá" : "Khoá")
-                        </button>
-                    </form>
-                    <form asp-action="ToggleAdmin" method="post" asp-controller="UserManagement" class="d-inline">
-                        <input type="hidden" name="id" value="@user.Id" />
-                        <button class="btn btn-sm btn-secondary" type="submit">
-                            @(user.Roles.Contains("Admin") ? "Thu quyền Admin" : "Cấp quyền Admin")
-                        </button>
-                    </form>
-                </td>
+                <th>Email</th>
+                <th>Họ tên</th>
+                <th>Điện thoại</th>
+                <th>Vai trò</th>
+                <th>Trạng thái</th>
+                <th>Hành động</th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var user in Model)
+            {
+                <tr>
+                    <td>@user.Email</td>
+                    <td>@user.FullName</td>
+                    <td>@user.PhoneNumber</td>
+                    <td>@string.Join(", ", user.Roles)</td>
+                    <td>
+                        @if (user.IsLocked)
+                        {
+                            <span class="badge bg-danger">Đã khoá</span>
+                        }
+                        else
+                        {
+                            <span class="badge bg-success">Đang hoạt động</span>
+                        }
+                    </td>
+                    <td>
+                        <form asp-action="ToggleLock" method="post" asp-controller="UserManagement" class="d-inline">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button class="btn btn-sm btn-warning" type="submit">
+                                @(user.IsLocked ? "Mở khoá" : "Khoá")
+                            </button>
+                        </form>
+                        <form asp-action="ToggleAdmin" method="post" asp-controller="UserManagement" class="d-inline">
+                            <input type="hidden" name="id" value="@user.Id" />
+                            <button class="btn btn-sm btn-secondary" type="submit">
+                                @(user.Roles.Contains("Admin") ? "Thu quyền Admin" : "Cấp quyền Admin")
+                            </button>
+                        </form>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>

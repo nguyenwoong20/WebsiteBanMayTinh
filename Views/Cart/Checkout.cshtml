@@ -13,6 +13,7 @@
             <div class="mb-3">
                 <label asp-for="Notes" class="form-label">Ghi chú</label>
                 <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Nhập ghi chú thêm kèm số tiền đã đặt cọc (nếu có)..."></textarea>
+                <p class="text-danger">Các trường hợp đặt cọc nhưng không ghi vào phần ghi chú sẽ được tính là chưa thanh toán đủ tiền</p>
             </div>
 
             <div class="mb-3">
@@ -30,15 +31,21 @@
             <div id="bankTransferInfo" style="display:none">
                 <div class="mb-3 text-center">
                     <p class="fw-bold">Vui lòng quét mã QR dưới đây để thanh toán:</p>
+                    <p class="fw-bold">Ngân Hàng Tiên Phong - TP Bank: 77315122004</p>
+                    <p class="fw-bold">Người Nhận: Nguyễn Lê Hoàn Hảo</p>
                     <p class="fw-bold">Nội dung: "Chuyển tiền mua máy tính cho LVComputer"</p>
-                    <p class="text-danger">Lưu ý nội dung chuyển khoản để tránh nhầm lẫn.</p>
-
+                    <p class="text-danger">Lưu ý nội dung chuyển khoản để tránh sai sót dẫn đến mất mát</p>
 
                     <img src="/LVComputer/QR_NguyenLeHoanHao.jpg" alt="QR Code" class="img-fluid rounded" style="max-width: 300px;" />
                 </div>
                 <div class="mb-3">
                     <label class="form-label">Tải lên hình ảnh biên lai chuyển khoản</label>
-                    <input type="file" name="ReceiptImage" accept="image/*" class="form-control" />
+                    <input type="file" name="ReceiptImage" id="receiptImage" accept="image/*" class="form-control" />
+                    <span class="text-danger" id="receiptImageError"></span>
+
+                    <div class="mt-3">
+                        <img id="previewImage" src="#" class="img-fluid rounded" style="max-width: 300px; display: none; cursor: pointer;" />
+                    </div>
                 </div>
             </div>
 
@@ -46,21 +53,80 @@
         </form>
     </div>
 </div>
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img id="modalImage" src="#" class="img-fluid rounded" alt="Biên lai chuyển khoản" />
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
+    <!-- Bootstrap JS -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+
     <script>
         const codRadio = document.getElementById('payCod');
         const bankRadio = document.getElementById('payBank');
         const bankInfo = document.getElementById('bankTransferInfo');
+        const receiptImage = document.getElementById('receiptImage');
+        const form = document.querySelector('form');
+        const errorSpan = document.getElementById('receiptImageError');
 
         function toggleBankInfo() {
-            bankInfo.style.display = bankRadio.checked ? 'block' : 'none';
+            if (bankRadio.checked) {
+                bankInfo.style.display = 'block';
+                receiptImage.setAttribute('required', 'required');
+            } else {
+                bankInfo.style.display = 'none';
+                receiptImage.removeAttribute('required');
+                errorSpan.innerText = ''; // Clear error if switching back to COD
+            }
         }
 
         codRadio.addEventListener('change', toggleBankInfo);
         bankRadio.addEventListener('change', toggleBankInfo);
 
-        // Khởi động đúng trạng thái khi load lại form
-        toggleBankInfo();
+        toggleBankInfo(); // init on load
+
+        // Optional: Client-side validation on submit
+        form.addEventListener('submit', function (e) {
+            if (bankRadio.checked && !receiptImage.value) {
+                e.preventDefault();
+                errorSpan.innerText = 'Vui lòng tải lên biên lai chuyển khoản.';
+            }
+        });
+
+        
+        //Xem trước hình ảnh
+            const receiptImageInput = document.getElementById('receiptImage');
+        const previewImage = document.getElementById('previewImage');
+        const modalImage = document.getElementById('modalImage');
+
+        receiptImageInput.addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const imgSrc = e.target.result;
+                    previewImage.src = imgSrc;
+                    modalImage.src = imgSrc;
+                    previewImage.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.style.display = 'none';
+            }
+        });
+
+        previewImage.addEventListener('click', function () {
+            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+            modal.show();
+        });
     </script>
 }

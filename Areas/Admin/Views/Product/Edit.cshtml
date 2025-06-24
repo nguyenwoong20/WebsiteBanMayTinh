@@ -72,11 +72,22 @@
         </div>
     </div>
 </div>
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img id="modalImg" src="#" class="img-fluid rounded" alt="Xem lớn hình ảnh" />
+            </div>
+        </div>
+    </div>
+</div>
 
 @section Scripts {
     @{
         await Html.RenderPartialAsync("_ValidationScriptsPartial");
     }
+
+    <script src="~/lib/bootstrap/js/bootstrap.bundle.min.js"></script>
 
     <script>
         document.getElementById('ImageFileInput').addEventListener('change', function (event) {
@@ -87,6 +98,17 @@
                     document.getElementById('imgPreview').src = e.target.result;
                 };
                 reader.readAsDataURL(file);
+            }
+        });
+
+        //Nhấp vào để xem ảnh
+        const modalImg = document.getElementById('modalImg');
+
+        imgPreview.addEventListener('click', function () {
+            if (imgPreview.src && imgPreview.style.display !== 'none') {
+                modalImg.src = imgPreview.src;
+                const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+                modal.show();
             }
         });
     </script>

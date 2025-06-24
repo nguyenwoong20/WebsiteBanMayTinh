@@ -54,7 +54,7 @@ namespace Website_BanMayTinh.Areas.Identity.Pages.Account
         {
             [Required(ErrorMessage = "Họ và tên là bắt buộc")]
             [StringLength(47, ErrorMessage = "Họ và tên phải có độ dài tối đa 47 ký tự.")]
-            [RegularExpression(@"^(?!\s)[a-zA-Z\s]+$", ErrorMessage = "Họ và tên chỉ được chứa chữ cái và khoảng trắng, không bắt đầu bằng khoảng trắng.")]
+            [RegularExpression(@"^\S[a-zA-ZÀ-ỹà-ỹĂăÂâĐđÊêÔôƠơƯư\s]*$", ErrorMessage = "Họ và tên không được bắt đầu bằng khoảng trắng và không được chứa ký tự đặc biệt.")]
             [Display(Name = "Họ và tên")]
             public string FullName { get; set; }
 

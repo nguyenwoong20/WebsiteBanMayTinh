@@ -57,6 +57,7 @@
                     </div>
                     <div class="card-body text-center">
                         <img src="@Model.ReceiptImagePath"
+                             id="receiptImage"
                              alt="Ảnh chuyển khoản"
                              class="img-fluid rounded shadow"
                              style="max-height: 300px;" />
@@ -127,3 +128,29 @@
         </a>
     </div>
 </div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img id="modalImg" src="#" class="img-fluid rounded" alt="Xem lớn hình ảnh" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const modalImg = document.getElementById('modalImg');
+        const receiptImage = document.getElementById('receiptImage');
+
+        if (receiptImage) {
+            receiptImage.addEventListener('click', function () {
+                modalImg.src = this.src;
+                const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+                modal.show();
+            });
+        }
+    </script>
+}
+

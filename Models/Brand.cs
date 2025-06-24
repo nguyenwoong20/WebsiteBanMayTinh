@@ -8,7 +8,7 @@ namespace Website_BanMayTinh.Models
 
         [Required(ErrorMessage = "Tên thương hiệu là bắt buộc")]
         [StringLength(20)] // Không nên để nvarchar(max)
-        [RegularExpression(@"^(?!\s)[a-zA-Z0-9\s]+$", ErrorMessage = "Tên sản phẩm chỉ được chứa chữ cái, số và khoảng trắng, không bắt đầu bằng khoảng trắng.")]
+        [RegularExpression(@"^\S.*$", ErrorMessage = "Tên thương hiệu không được bắt đầu bằng khoảng trắng.")]
         [Display(Name = "Tên thương hiệu")]
         public string Name { get; set; }
 

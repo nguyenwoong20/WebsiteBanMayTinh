@@ -8,11 +8,14 @@ namespace Website_BanMayTinh.Models
         [Display(Name = "Email")]
         public string Email { get; set; }
 
-        [Required]
+        [Required(ErrorMessage = "Họ và tên là bắt buộc")]
+        [StringLength(47, ErrorMessage = "Họ và tên phải có độ dài tối đa 47 ký tự.")]
+        [RegularExpression(@"^\S[a-zA-ZÀ-ỹà-ỹĂăÂâĐđÊêÔôƠơƯư\s]*$", ErrorMessage = "Họ và tên không được bắt đầu bằng khoảng trắng và không được chứa ký tự đặc biệt.")]
         [Display(Name = "Họ và tên")]
         public string FullName { get; set; }
 
         [Phone]
+        [Required(ErrorMessage = "Số điện thoại là bắt buộc")]
         [Display(Name = "Số điện thoại")]
         public string PhoneNumber { get; set; }
     }

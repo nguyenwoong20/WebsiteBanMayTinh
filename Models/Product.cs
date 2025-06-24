@@ -8,7 +8,7 @@ namespace Website_BanMayTinh.Models
 
         [Required(ErrorMessage = "Tên sản phẩm là bắt buộc")]
         [StringLength(150)]
-        [RegularExpression(@"^(?!\s)[a-zA-Z0-9\s]+$", ErrorMessage = "Tên sản phẩm chỉ được chứa chữ cái, số và khoảng trắng, không bắt đầu bằng khoảng trắng.")]
+        [RegularExpression(@"^\S.*$", ErrorMessage = "Tên sản phẩm không được bắt đầu bằng khoảng trắng.")]
         [Display(Name = "Tên sản phẩm")]
         public string Name { get; set; }
 

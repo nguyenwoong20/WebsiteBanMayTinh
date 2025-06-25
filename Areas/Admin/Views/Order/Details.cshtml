@@ -1,5 +1,6 @@
 ﻿@model Website_BanMayTinh.Models.Order
 
+
 @{
     ViewData["Title"] = "Chi Tiết Đơn Hàng";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
@@ -18,9 +19,39 @@
             <i class="fas fa-user"></i> <b>Thông Tin Khách Hàng</b>
         </div>
         <div class="card-body">
-            <p><strong><i class="fas fa-user"></i> Tên:</strong> @Model.User?.FullName</p>
-            <p><strong><i class="fas fa-envelope"></i> Email:</strong> @Model.User?.Email</p>
-            <p><strong><i class="fas fa-phone"></i> Số điện thoại:</strong> @Model.User?.PhoneNumber</p>
+            <p>
+                <strong><i class="fas fa-user"></i> Tên:</strong>
+                @if (Model.User != null)
+                {
+                    @Model.User.FullName
+                }
+                else
+                {
+                    @Model.CustomerName
+                }
+            </p>
+            <p>
+                <strong><i class="fas fa-envelope"></i> Email:</strong>
+                @if (Model.User != null && !string.IsNullOrEmpty(Model.User.Email))
+                {
+                    @Model.User.Email
+                }
+                else
+                {
+                    @Model.CustomerEmail
+                }
+            </p>
+            <p>
+                <strong><i class="fas fa-phone"></i> Số điện thoại:</strong>
+                @if (Model.User != null && !string.IsNullOrEmpty(Model.User.PhoneNumber))
+                {
+                    @Model.User.PhoneNumber
+                }
+                else
+                {
+                    @Model.CustomerPhone
+                }
+            </p>
         </div>
     </div>
 

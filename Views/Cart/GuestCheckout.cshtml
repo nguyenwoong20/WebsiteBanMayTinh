@@ -1,0 +1,137 @@
+﻿@model Website_BanMayTinh.Models.CreateOrderViewModel
+
+<div class="container mt-5">
+    <h2 class="text-center fw-bold text-primary">Tạo Đơn Hàng Khách Lẻ</h2>
+
+    <div class="card shadow-sm p-4">
+        <form asp-action="GuestCheckout" method="post" enctype="multipart/form-data">
+            <div class="mb-3">
+                <label asp-for="CustomerName" class="form-label">Tên khách hàng</label>
+                <input asp-for="CustomerName" class="form-control" placeholder="Nhập tên khách..." />
+                <span asp-validation-for="CustomerName" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CustomerPhone" class="form-label">Số điện thoại</label>
+                <input asp-for="CustomerPhone" class="form-control" placeholder="Nhập số điện thoại..." />
+                <span asp-validation-for="CustomerPhone" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="CustomerEmail" class="form-label">Email</label>
+                <input asp-for="CustomerEmail" class="form-control" placeholder="Nhập email (nếu có)..." />
+                <span asp-validation-for="CustomerEmail" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="ShippingAddress" class="form-label">Địa chỉ giao hàng</label>
+                <input asp-for="ShippingAddress" class="form-control" placeholder="Nhập địa chỉ..." />
+                <span asp-validation-for="ShippingAddress" class="text-danger"></span>
+            </div>
+
+            <div class="mb-3">
+                <label asp-for="Notes" class="form-label">Ghi chú</label>
+                <textarea asp-for="Notes" class="form-control" rows="3" placeholder="Ghi chú thêm nếu có..."></textarea>
+            </div>
+
+            <div class="mb-3">
+                <label class="form-label">Phương thức thanh toán</label><br />
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="COD" checked id="payCod" />
+                    <label class="form-check-label" for="payCod">Thanh toán khi nhận hàng</label>
+                </div>
+                <div class="form-check form-check-inline">
+                    <input class="form-check-input" type="radio" name="PaymentMethod" value="BankTransfer" id="payBank" />
+                    <label class="form-check-label" for="payBank">Chuyển khoản</label>
+                </div>
+            </div>
+
+            <div id="bankTransferInfo" style="display:none">
+                <div class="mb-3 text-center">
+                    <p class="fw-bold">Vui lòng quét mã QR dưới đây để thanh toán:</p>
+                    <p class="fw-bold">Ngân Hàng Tiên Phong - TP Bank: 77315122004</p>
+                    <p class="fw-bold">Người Nhận: Nguyễn Lê Hoàn Hảo</p>
+                    <p class="fw-bold">Nội dung: "Chuyển tiền mua máy tính cho LVComputer"</p>
+                    <img src="/LVComputer/QR_NguyenLeHoanHao.jpg" alt="QR Code" class="img-fluid rounded" style="max-width: 300px;" />
+                </div>
+
+            </div>
+
+            <div class="form-check mb-3">
+                <input class="form-check-input" asp-for="IsPay" type="checkbox" />
+                <label class="form-check-label" asp-for="IsPay">Đã thanh toán đủ</label>
+            </div>
+
+            <button type="submit" class="btn btn-success w-100 fw-bold">Tạo Đơn Hàng</button>
+        </form>
+    </div>
+</div>
+
+<div class="modal fade" id="imageModal" tabindex="-1" aria-labelledby="imageModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg">
+        <div class="modal-content">
+            <div class="modal-body text-center">
+                <img id="modalImage" src="#" class="img-fluid rounded" alt="Biên lai chuyển khoản" />
+            </div>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script>
+        const codRadio = document.getElementById('payCod');
+        const bankRadio = document.getElementById('payBank');
+        const bankInfo = document.getElementById('bankTransferInfo');
+        const receiptImage = document.getElementById('receiptImage');
+        const form = document.querySelector('form');
+        const errorSpan = document.getElementById('receiptImageError');
+
+        function toggleBankInfo() {
+            if (bankRadio.checked) {
+                bankInfo.style.display = 'block';
+            } else {
+                bankInfo.style.display = 'none';
+                errorSpan.innerText = '';
+            }
+        }
+
+        codRadio.addEventListener('change', toggleBankInfo);
+        bankRadio.addEventListener('change', toggleBankInfo);
+
+        toggleBankInfo();
+
+        form.addEventListener('submit', function (e) {
+            if (bankRadio.checked && !receiptImage.value) {
+                e.preventDefault();
+                errorSpan.innerText = 'Vui lòng tải lên biên lai chuyển khoản.';
+            }
+        });
+
+        const previewImage = document.getElementById('previewImage');
+        const modalImage = document.getElementById('modalImage');
+
+        receiptImage.addEventListener('change', function () {
+            const file = this.files[0];
+
+            if (file) {
+                const reader = new FileReader();
+
+                reader.onload = function (e) {
+                    const imgSrc = e.target.result;
+                    previewImage.src = imgSrc;
+                    modalImage.src = imgSrc;
+                    previewImage.style.display = 'block';
+                };
+
+                reader.readAsDataURL(file);
+            } else {
+                previewImage.style.display = 'none';
+            }
+        });
+
+        previewImage.addEventListener('click', function () {
+            const modal = new bootstrap.Modal(document.getElementById('imageModal'));
+            modal.show();
+        });
+    </script>
+}

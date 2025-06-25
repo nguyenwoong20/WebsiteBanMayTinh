@@ -16,8 +16,7 @@ namespace Website_BanMayTinh.Models
 
         public string? Notes { get; set; }
 
-        [Required]
-        public string UserId { get; set; }
+        public string? UserId { get; set; }
 
         public bool IsPay { get; set; }
 
@@ -29,5 +28,13 @@ namespace Website_BanMayTinh.Models
 
         public string? ReceiptImagePath { get; set; }
 
+        [StringLength(47)]
+        public string? CustomerName { get; set; }
+
+        [EmailAddress(ErrorMessage = "Email không hợp lệ")]
+        public string? CustomerEmail { get; set; }
+
+        [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
+        public string? CustomerPhone { get; set; }
     }
 }

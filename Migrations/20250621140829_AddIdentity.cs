@@ -220,7 +220,7 @@ namespace Website_BanMayTinh.Migrations
                 {
                     Id = table.Column<int>(type: "int", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: false),
+                    UserId = table.Column<string>(type: "nvarchar(450)", nullable: true),
                     TotalAmount = table.Column<decimal>(type: "decimal(18,0)", nullable: false),
                     ShippingAddress = table.Column<string>(type: "nvarchar(150)", maxLength: 150, nullable: true),
                     Notes = table.Column<string>(type: "nvarchar(500)", maxLength: 500, nullable: true),

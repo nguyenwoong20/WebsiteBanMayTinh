@@ -1,6 +1,7 @@
 ﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_MyLayout.cshtml";
+    var adminEmails = ViewBag.AdminEmails as List<string>;
 }
 
 <div class="container mt-4">
@@ -60,7 +61,7 @@
         </div>
     </form>
 
-
+    <h4 class="fw-bold text-primary mt-4">Khách hàng có tài khoản</h4>
     <table class="table table-hover table-striped table-bordered text-center align-middle custom-rounded-table">
         <thead class="table-success">
             <tr>
@@ -86,19 +87,21 @@
                         }
                         else
                         {
-                            <span class="text-danger">N/A</span>
+                            <span class="text-danger">@item.CustomerName</span>
                         }
                     </td>
                     <td class="td-email">
-                        @if (item.User != null)
+                        @if (item.User != null && !string.IsNullOrEmpty(item.User.Email))
                         {
                             <a href="mailto:@item.User.Email" class="text-decoration-none">@item.User.Email</a>
                         }
                         else
                         {
-                            <span class="text-danger">N/A</span>
+                            <span class="text-danger">@item.CustomerEmail</span>
                         }
                     </td>
+
+
                     <td>@item.OrderDate.ToString("dd/MM/yyyy")</td>
                     <td class="text-end">@item.TotalAmount.ToString("N2") VNĐ</td>
                     <td>
@@ -147,6 +150,7 @@
             }
         </tbody>
     </table>
+
     <nav>
         <ul class="pagination justify-content-center">
             @for (int i = 1; i <= ViewBag.TotalPages; i++)
@@ -183,9 +187,9 @@
         box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05); /* Tùy chọn: thêm đổ bóng nhẹ */
     }
 
-    .custom-rounded-table thead th {
-        background-color: #d1e7dd; /* màu nền hàng đầu */
-    }
+        .custom-rounded-table thead th {
+            background-color: #d1e7dd; /* màu nền hàng đầu */
+        }
 </style>
 
 

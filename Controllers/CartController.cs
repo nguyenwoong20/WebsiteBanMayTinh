@@ -351,5 +351,98 @@ namespace Website_BanMayTinh.Controllers
             SaveCart(cart);
             return Ok(new { success = true });
         }
+
+        [HttpGet]
+        [Authorize(Roles = "Admin")]
+        public IActionResult GuestCheckout()
+        {
+            var cart = GetCart();
+            if (cart == null || !cart.Any())
+            {
+                TempData["Error"] = "Giỏ hàng đang trống.";
+                return RedirectToAction("Index");
+            }
+
+            var model = new CreateOrderViewModel
+            {
+                Items = cart.Select(i => new OrderItemInput
+                {
+                    ProductId = i.Id,
+                    Quantity = i.Quantity
+                }).ToList()
+            };
+
+            return View(model);
+        }
+
+        [HttpPost]
+        [Authorize(Roles = "Admin")]
+        [ValidateAntiForgeryToken]
+        public async Task<IActionResult> GuestCheckout(CreateOrderViewModel model)
+        {
+            if (!ModelState.IsValid)
+            {
+                return View(model);
+            }
+
+            var cart = GetCart();
+            if (cart == null || !cart.Any())
+            {
+                TempData["Error"] = "Giỏ hàng đang trống.";
+                return RedirectToAction("Index");
+            }
+
+            // Kiểm tra tồn kho
+            foreach (var item in cart)
+            {
+                var product = await _context.Products.FindAsync(item.Id);
+                if (product == null || item.Quantity > product.Stock)
+                {
+                    TempData["Error"] = $"Sản phẩm {item.Name} không đủ hàng.";
+                    return RedirectToAction("Index");
+                }
+            }
+
+            var order = new Order
+            {
+                CustomerName = model.CustomerName,
+                CustomerPhone = model.CustomerPhone,
+                CustomerEmail = model.CustomerEmail,
+                ShippingAddress = model.ShippingAddress,
+                Notes = model.Notes,
+                PaymentMethod = model.PaymentMethod,
+                IsPay = model.IsPay,
+                OrderDate = DateTime.Now,
+                UserId = null, // Khách offline
+                OrderDetails = new List<OrderDetail>(),
+                TotalAmount = cart.Sum(i => i.Price * i.Quantity)
+            };
+
+            foreach (var item in cart)
+            {
+                order.OrderDetails.Add(new OrderDetail
+                {
+                    ProductId = item.Id,
+                    Quantity = item.Quantity,
+                    Price = item.Price
+                });
+
+                // Giảm tồn kho
+                var product = await _context.Products.FindAsync(item.Id);
+                if (product != null)
+                {
+                    product.Stock -= item.Quantity;
+                    _context.Products.Update(product);
+                }
+            }
+
+            _context.Orders.Add(order);
+            await _context.SaveChangesAsync();
+
+            SaveCart(new List<CartItem>()); // Clear cart
+            TempData["Success"] = $"Đã tạo đơn hàng offline thành công (Mã: {order.Id})";
+
+            return View("OrderCompleted", order.Id);
+        }
     }
 }

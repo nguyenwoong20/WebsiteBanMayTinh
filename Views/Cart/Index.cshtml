@@ -1,5 +1,4 @@
-﻿
-@{
+﻿@{
     ViewData["Title"] = "Index";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
@@ -16,11 +15,11 @@
 <h2>Giỏ hàng của bạn</h2>
 @if (Model.Count == 0)
 {
-	<p>Giỏ hàng của bạn đang trống.</p>
+    <p>Giỏ hàng của bạn đang trống.</p>
 }
 else
 {
-	<p>Bạn có @Model.Count sản phẩm trong giỏ hàng.</p>
+    <p>Bạn có @Model.Count sản phẩm trong giỏ hàng.</p>
 }
 
 <div class="d-flex justify-content-end mb-3">
@@ -72,6 +71,11 @@ else
 <h4 class="text-end">Tổng tiền: <strong>@ViewBag.Total.ToString("N0", vn) đ</strong></h4>
 <a asp-action="Clear" class="btn btn-warning">Xóa tất cả</a>
 <a asp-controller="Cart" asp-action="Checkout" class="btn btn-success">Đặt hàng</a>
+@if (User.IsInRole("Admin"))
+{
+    <a asp-controller="Cart" asp-action="GuestCheckout" class="btn btn-dark">Tạo đơn hàng (khách vãng lai)</a>
+}
+
 
 @section Scripts {
     <script>

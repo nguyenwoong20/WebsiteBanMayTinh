@@ -50,7 +50,7 @@
                     <span asp-validation-for="Input.ConfirmPassword" class="text-danger"></span>
                 </div>
 
-                <div class="mb-4">
+                <div class="mb-4" style="display: none">
                     <label asp-for="Input.Role" class="form-label">Chọn vai trò</label>
                     <select asp-for="Input.Role" class="form-select" asp-items="Model.Input.RoleList">
                         <option value="">-- Vai trò mặc định: Khách hàng --</option>

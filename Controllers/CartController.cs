@@ -259,7 +259,7 @@ namespace Website_BanMayTinh.Controllers
             // Lưu đơn hàng
             var user = await _userManager.GetUserAsync(User);
             order.UserId = user.Id;
-            order.OrderDate = DateTime.UtcNow;
+            order.OrderDate = DateTime.Now;
             order.TotalAmount = cart.Sum(i => i.Price * i.Quantity);
             order.OrderDetails = new List<OrderDetail>(); // Khởi tạo danh sách
 

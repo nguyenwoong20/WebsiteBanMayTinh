@@ -11,7 +11,9 @@ namespace Website_BanMayTinh.Models
         [EmailAddress(ErrorMessage = "Email không hợp lệ")]
         public string? CustomerEmail { get; set; }
 
+        [Required(ErrorMessage = "Số điện thoại là bắt buộc")]
         [Phone(ErrorMessage = "Số điện thoại không hợp lệ")]
+        [StringLength(11, ErrorMessage = "Số điện thoại không được vượt quá 11 ký tự")]
         public string? CustomerPhone { get; set; }
 
         [Required(ErrorMessage = "Địa chỉ giao hàng là bắt buộc")]
